@@ -1,0 +1,21 @@
+This chart installs a CIAM Solution stack of Ping products.
+
+Enabled Use Cases:
+{{ include "sampleCiam.useCaseNames" . }}
+
+Product Consoles:
+{{- if .Values.pingOne.adminConsole.useMyPing }}
+My Ping: https://console.pingone.{{ include "sampleCiam.pingOneTld" .}}/?env={{ .Values.pingOne.adminConsole.envId }}#/home?nav=home
+{{ end }}
+PingDirectory: https://pingdataconsole-{{ .Release.Name }}.ping-devops.com/console
+PingFederate: https://pingfederate-{{ .Release.Name }}.ping-devops.com/pingfederate
+{{if .Values.useCases.delegatedAdministration.enabled }}
+Delegator: https://{{ include "sampleCiam.hostname" . }}/delegator
+{{- end }}
+
+External Hostname:
+{{ include "sampleCiam.hostname" . }}
+
+Authentication Samples:
+SAML: https://{{ include "sampleCiam.hostname" . }}/idp/startSSO.ping?PartnerSpId=Sample-SAML
+OIDC: https://{{ include "sampleCiam.hostname" . }}/as/authorization.oauth2?response_type=code&client_id=PingLogon&redirect_uri=https://httpbin.org/anything&scope=openid%20profile

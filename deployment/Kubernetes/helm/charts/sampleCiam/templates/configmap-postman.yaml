@@ -1,0 +1,144 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/name: {{ include "sampleCiam.name" . }}
+    helm.sh/chart: {{ include "sampleCiam.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  name: {{ .Release.Name }}-postman
+data:
+  postman_vars.json: |
+    {
+        "id": "40199d03-d15c-47e4-b502-8b62f98479d1",
+        "name": "Solution-sampleCiam",
+        "values": [ 
+            {
+                "key": "apiLog",
+                "value": {{ default "info" .Values.global.api.logLevel | quote }},
+                "enabled": true
+            },
+            {
+                "key": "globalPwd",
+                "value": {{ .Values.global.envs.PING_IDENTITY_PASSWORD | quote }},
+                "enabled": true
+            },
+            {
+                "key": "pdAdminUrl",
+                "value": "https://{{ .Release.Name }}-pingdirectory:{{ include "pingports.pdConfigPort" . }}",
+                "enabled": true
+            },
+            {
+                "key": "pdApis",
+                "value": "{{ .Release.Name }}-pingdirectory:{{ include "pingports.pdApiPort" . }}",
+                "enabled": true
+            },
+            {
+                "key": "pdLdapHost",
+                "value": "{{ .Release.Name }}-pingdirectory:{{ include "pingports.pdLdapPort" . }}",
+                "enabled": true
+            },
+            {
+                "key": "pfAdminURL",
+                "value": "https://{{ .Release.Name }}-pingfederate-admin:{{ include "pingports.pfAdminPort" . }}",
+                "enabled": true
+            },
+            {
+                "key": "pfBaseURL",
+                "value": "https://{{ include "sampleCiam.hostname" . }}",
+                "enabled": true
+            },
+            {
+                "key": "pfRuntime",
+                "value": "{{ .Release.Name }}-pingfederate-engine:{{ include "pingports.pfEnginePort" . }}",
+                "enabled": true
+            },{{- if .Values.useCases.paAsProxy.enabled }}
+            {{- if .Values.useCases.paAsProxy.useTrustedCert }}
+            {
+                "key": "acmeServerName",
+                "value": "Let's Encrypt",
+                "enabled": true
+            },{{ end }}
+            {
+                "key": "paAdminURL",
+                "value": "https://{{ .Release.Name }}-pingaccess:{{ .Values.pingaccess.service.admin.port }}",
+                "enabled": true
+            },
+            {
+                "key": "paVirtualHost",
+                "value": {{ include "sampleCiam.hostname" . | quote }},
+                "enabled": true
+            },{{- end }}
+            {
+                "key": "adminSsoProvider",
+                "value": {{ include "sampleCiam.pingOneAdminUrl" . | quote }},
+                "enabled": true
+            },
+            {
+                "key": "adminSsoClientId",
+                "value": {{ .Values.pingOne.adminConsole.adminAppId | quote }},
+                "enabled": true
+            },
+            {
+                "key": "adminSsoClientSecret",
+                "value": {{ .Values.pingOne.adminConsole.adminAppSecret | quote }},
+                "enabled": true
+            }{{ if .Values.pingOne.usePingOneServices }},
+            {
+                "key": "pingOneAuthNURL",
+                "value": "https://auth.pingone.{{ include "sampleCiam.pingOneTld" . }}",
+                "enabled": true
+            },
+            {
+                "key": "pingOneMgmtURL",
+                "value": "https://api.pingone.{{ include "sampleCiam.pingOneTld" . }}",
+                "enabled": true
+            },
+            {
+                "key": "pingOneRegion",
+                "value": {{ include "sampleCiam.pingOneRegion" . | quote }},
+                "enabled": true
+            },
+            {
+                "key": "pingOneEnvId",
+                "value": {{ .Values.pingOne.environment.envId | quote }},
+                "enabled": true
+            },
+            {
+                "key": "pfWorkerId",
+                "value": {{ .Values.pingOne.environment.pfWorkerId | quote }},
+                "enabled": true
+            },
+            {
+                "key": "pfWorkerSecret",
+                "value": {{ .Values.pingOne.environment.pfWorkerSecret | quote }},
+                "enabled": true
+            },
+            {
+                "key": "mfaPopId",
+                "value": {{ .Values.pingOne.environment.mfaPopId | quote }},
+                "enabled": true
+            },
+            {
+                "key": "mfaAppId",
+                "value": {{ .Values.pingOne.environment.mfaAppId | quote }},
+                "enabled": true
+            },
+            {
+                "key": "mfaAppSecret",
+                "value": {{ .Values.pingOne.environment.mfaAppSecret | quote }},
+                "enabled": true
+            }{{ end }}{{ if .Values.useCases.delegatedAdministration.enabled }},
+            {
+                "key": "delegatorApp",
+                "value": "{{ .Release.Name }}-pingdelegator:{{ include "pingports.pingDelegatorPort" . }}",
+                "enabled": true
+            },
+            {
+                "key": "delegatorSecure",
+                "value": true,
+                "enabled": true
+            }{{- end}}
+        ],
+        "_postman_variable_scope": "environment"
+    }

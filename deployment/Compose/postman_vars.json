@@ -1,0 +1,12 @@
+{
+	"id": "40199d03-d15c-47e4-b502-8b62f98479d1",
+	"name": "Solution-Customer360",
+	"values": [
+		{
+			"key": "pfBaseURL",
+			"value": "{{your PF BaseURL}}",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment"
+}
