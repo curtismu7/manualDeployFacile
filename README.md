@@ -1,4 +1,4 @@
-# Solution - Customer360
+# Sample CIAM stack
 
 This repo provides a sample CIAM configuration for PingDirectory \ PingFederate \ PingDataSync \ PingOne MFA
 
