@@ -63,3 +63,40 @@
         {{- .Release.Name }}{{- print }}.ping-devops.com
     {{- end }}
 {{- end }}
+
+{{- define "sampleCiam.pfAdminServiceName" -}}
+    {{ include "pinglib.fullname" (list . (merge ( index .Values "ping-devops" "pingfederate-admin" ) .Values.global)) }}
+{{- end }}
+
+{{- define "sampleCiam.pfEngineServiceName" -}}
+    {{ include "pinglib.fullname" (list . (merge ( index .Values "ping-devops" "pingfederate-engine" ) .Values.global)) }}
+{{- end }}
+
+{{- define "sampleCiam.pdAdminServiceName" -}}
+    {{ include "pinglib.fullname" (list . (merge ( index .Values "ping-devops" "pingdirectory" ) .Values.global)) }}
+{{- end }}
+
+{{- define "sampleCiam.pdsAdminServiceName" -}}
+    {{ include "pinglib.fullname" (list . (merge ( index .Values "ping-devops" "pingdatasync" ) .Values.global)) }}
+{{- end }}
+
+{{- define "sampleCiam.delegatorServiceName" -}}
+    {{ include "pinglib.fullname" (list . (merge ( index .Values "ping-devops" "pingdelegator" ) .Values.global)) }}
+{{- end }}
+
+{{- define "sampleCiam.pfAdminHostname" -}}
+    {{ if eq .Values.global.ingress.addReleaseNameToHost "append" }}
+        {{- print "pingfederate-admin-" .Release.Name "." .Values.global.ingress.defaultDomain }}
+    {{- else if eq .Values.global.ingress.addReleaseNameToHost "prepend" -}}
+        {{- print .Release.Name "-" "pingfederate-admin." .Values.global.ingress.defaultDomain }}
+    {{- else -}}
+        {{- print "pingfederate-admin." .Values.global.ingress.defaultDomain }}
+    {{- end -}}
+{{- end -}}
+
+{{/* Playing with Lookups */}}
+{{- define "sampleCiam.pfAdminHostnameLookup" -}}
+    {{ range $index, $val := ((lookup "extensions/v1beta1" "Ingress" .Release.Namespace ( include "sampleCiam.pfAdminServiceName" . )).spec.rules) }}
+            {{- print $val.host }}
+    {{- end -}}
+{{- end -}} {{/* */}}

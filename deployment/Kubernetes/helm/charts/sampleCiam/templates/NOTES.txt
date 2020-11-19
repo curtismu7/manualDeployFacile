@@ -8,7 +8,7 @@ Product Consoles:
 My Ping: https://console.pingone.{{ include "sampleCiam.pingOneTld" .}}/?env={{ .Values.pingOne.adminConsole.envId }}#/home?nav=home
 {{ end }}
 PingDirectory: https://pingdataconsole-{{ .Release.Name }}.ping-devops.com/console
-PingFederate: https://pingfederate-{{ .Release.Name }}.ping-devops.com/pingfederate
+PingFederate: https://{{ include "sampleCiam.pfAdminHostname" . | quote}}/pingfederate
 {{if .Values.useCases.delegatedAdministration.enabled }}
 Delegator: https://{{ include "sampleCiam.hostname" . }}/delegator
 {{- end }}

@@ -23,7 +23,7 @@ data:
   {{- end }}
   PING_IDENTITY_PASSWORD: {{ default "2FederateM0re" .Values.global.envs.PING_IDENTITY_PASSWORD | quote }}
   PF_ADMIN_PORT: {{ include "pingports.pfAdminPort" . | quote }}
-  PF_ADMIN_HOSTNAME: "pingfederate-{{ .Release.Name }}.ping-devops.com"
+  PF_ADMIN_HOSTNAME: {{ include "sampleCiam.pfAdminHostname" . | quote}}
   PF_ADMIN_TITLE: {{ .Release.Name }}
   PF_BASE_URL: {{ include "sampleCiam.hostname" .  | quote }}
   {{- if .Values.useCases.delegatedAdministration.enabled }}

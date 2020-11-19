@@ -1,6 +1,6 @@
-# Deploy Customer360 using Helm
+# Deploy Sample-CIAM using Helm
 
-Helm is a package deployment tool for Kubernetes. It can be used with [Customer360](../Kubernetes) to deploy all the components of the Solution with a simple command.
+Helm is a package deployment tool for Kubernetes. It can be used with [Sample-CIAM](../Kubernetes) to deploy all the components of the Solution with a simple command.
 
 1. Inject your Ping Devops information into your k8s namespace
 

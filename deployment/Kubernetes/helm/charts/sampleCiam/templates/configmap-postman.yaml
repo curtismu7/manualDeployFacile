@@ -25,22 +25,22 @@ data:
             },
             {
                 "key": "pdAdminUrl",
-                "value": "https://{{ .Release.Name }}-pingdirectory:{{ include "pingports.pdConfigPort" . }}",
+                "value": "https://{{ include "sampleCiam.pdAdminServiceName" . }}:{{ include "pingports.pdConfigPort" . }}",
                 "enabled": true
             },
             {
                 "key": "pdApis",
-                "value": "{{ .Release.Name }}-pingdirectory:{{ include "pingports.pdApiPort" . }}",
+                "value": "{{ include "sampleCiam.pdAdminServiceName" . }}:{{ include "pingports.pdApiPort" . }}",
                 "enabled": true
             },
             {
                 "key": "pdLdapHost",
-                "value": "{{ .Release.Name }}-pingdirectory:{{ include "pingports.pdLdapPort" . }}",
+                "value": "{{ include "sampleCiam.pdAdminServiceName" . }}:{{ include "pingports.pdLdapPort" . }}",
                 "enabled": true
             },
             {
                 "key": "pfAdminURL",
-                "value": "https://{{ .Release.Name }}-pingfederate-admin:{{ include "pingports.pfAdminPort" . }}",
+                "value": "https://{{ include "sampleCiam.pfAdminServiceName" . }}:{{ include "pingports.pfAdminPort" . }}",
                 "enabled": true
             },
             {
@@ -50,7 +50,7 @@ data:
             },
             {
                 "key": "pfRuntime",
-                "value": "{{ .Release.Name }}-pingfederate-engine:{{ include "pingports.pfEnginePort" . }}",
+                "value": "{{ include "sampleCiam.pfEngineServiceName" . }}:{{ include "pingports.pfEnginePort" . }}",
                 "enabled": true
             },{{- if .Values.useCases.paAsProxy.enabled }}
             {{- if .Values.useCases.paAsProxy.useTrustedCert }}
@@ -131,7 +131,7 @@ data:
             }{{ end }}{{ if .Values.useCases.delegatedAdministration.enabled }},
             {
                 "key": "delegatorApp",
-                "value": "{{ .Release.Name }}-pingdelegator:{{ include "pingports.pingDelegatorPort" . }}",
+                "value": "{{ include "sampleCiam.delegatorServiceName" . }}:{{ include "pingports.pingDelegatorPort" . }}",
                 "enabled": true
             },
             {

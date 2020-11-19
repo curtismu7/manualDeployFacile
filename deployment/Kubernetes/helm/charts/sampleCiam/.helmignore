@@ -24,3 +24,4 @@
 # Test files
 test-values.yaml
 customer360-*.tgz
+values-*

@@ -23,7 +23,9 @@ global:
   # Determines if the DevOps Ingress config is applied
   # Set to `false` to use a single Client-facing ingress to pul all front-channel services on one hostname
   ingress:
-    enabled: false
+    enabled: true
+    addReleaseNameToHost: append
+    defaultDomain: ping-devops.com
 
   # Client Connection settings - by default, Ingress, DNS, Certificates are handled by k8s
   # PingAccess can be used instead by setting `useCases.paAsProxy: true` below
@@ -37,29 +39,7 @@ global:
       # ping-devops generate tls-secret {{externalHostname}} | kubectl apply -f -
       certificate:
         tlsSecretName: tls-secret
-
-# Enable these to include with the base CIAM configuration
-useCases:
-  # Add PingAccess proxy deployment for all Client traffic, instead of Ingress 
-  paAsProxy:
-    # If enabled, create your `externalHostname` DNS record as a CNAME to `pa.ping-demos.com`
-    # This will send traffic through the `nginx-public-passthrough` Ingress IP
-    enabled: false
-    ## Set TRUSTED_CERT to `true` if you want a Let's Encrypt Cert
-    ## (Leave to `false` while testing - so you don't trip LE rate limits)
-    ## Configure `externalDNS` above if you want a Vanity domain with ACME managed cert
-    useTrustedCert: false
-  # Add PingAccess deployment for protected WAM Client traffic
-  # Configures PF as the Token Provider
-  paAsWAM:
-    enabled: false
-  # Configure PD Consent API and prep PF \ PA for Privacy Dashboard
-  consentManagement: 
-    enabled: true
-  # Configure PD for DelAdmin (Config and Users) and install Delegator
-  # Server Profile: https://github.com/cprice-ping/Profile-DelAdmin
-  delegatedAdministration: 
-    enabled: true
+#### End Global ####
 
 # PingOne Service Details
 pingOne:
@@ -89,6 +69,31 @@ pingOne:
     mfaAppId: "YourMfaAppID"
     mfaAppSecret: "YourMfaAppSecret"
     mfaPopId: "YourMfaUserPopulationID"
+### End - PingOne
+
+# Enable these to include with the base CIAM configuration
+useCases:
+  # Add PingAccess proxy deployment for all Client traffic, instead of Ingress 
+  paAsProxy:
+    # If enabled, create your `externalHostname` DNS record as a CNAME to `pa.ping-demos.com`
+    # This will send traffic through the `nginx-public-passthrough` Ingress IP
+    enabled: false
+    ## Set TRUSTED_CERT to `true` if you want a Let's Encrypt Cert
+    ## (Leave to `false` while testing - so you don't trip LE rate limits)
+    ## Configure `externalDNS` above if you want a Vanity domain with ACME managed cert
+    useTrustedCert: false
+  # Add PingAccess deployment for protected WAM Client traffic
+  # Configures PF as the Token Provider
+  paAsWAM:
+    enabled: false
+  # Configure PD Consent API and prep PF \ PA for Privacy Dashboard
+  consentManagement: 
+    enabled: true
+  # Configure PD for DelAdmin (Config and Users) and install Delegator
+  # Server Profile: https://github.com/cprice-ping/Profile-DelAdmin
+  delegatedAdministration: 
+    enabled: true
+#### End - Use Cases
 
 ## Product Specific values
 # DevOps Keys and \ or License files can be applied to the container
@@ -99,11 +104,11 @@ ping-devops:
   pingdirectory:
     enabled: true
     envs: 
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git
+      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git
       SERVER_PROFILE_PATH: pingdirectory
     logging: INFO
-    ingress:
-      enabled: false
+    #ingress:
+    #  enabled: false
     container:
       replicaCount: 1
     services:
@@ -118,11 +123,16 @@ ping-devops:
   pingfederate-admin:
     enabled: true
     envs:
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git
+      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git
       SERVER_PROFILE_PATH: pingfederate   
     logging: INFO
     ingress:
-      enabled: false
+      hosts:
+        - host: pingfederate-admin._defaultDomain_
+          paths:
+          - path: /
+            backend:
+              servicePort: 443 
     services:
       # Allows OIDC callbacks to PF through the GSA Ingress
       # Comment out `admin` section to default to :9999
@@ -133,31 +143,29 @@ ping-devops:
   pingfederate-engine:
     enabled: true
     envs:
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git
+      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git
       SERVER_PROFILE_PATH: pingfederate
       PF_ADMIN_PORT: "443"
     logging: INFO
-    ingress:
-      enabled: false
+    #ingress:
+    #  enabled: false
 
   pingdatasync:
     enabled: true
     envs:
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git
+      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git
       SERVER_PROFILE_PATH: pingdatasync
     logging: INFO
-    ingress:
-      enabled: false
 
   pingcentral:
     enabled: false
     tlsBlindTrust: true
     tlsVerifyHostnames: false
     envs:
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git 
+      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git 
       SERVER_PROFILE_PATH: pingcentral/logging
       SERVER_PROFILE_PARENT: DATA
-      SERVER_PROFILE_DATA_URL: https://github.com/pingidentity/Customer360.git
+      SERVER_PROFILE_DATA_URL: https://github.com/cprice-ping/Sample-CIAM.git
       SERVER_PROFILE_DATA_PATH: pingcentral/external-mysql-db
     logging: INFO
 
