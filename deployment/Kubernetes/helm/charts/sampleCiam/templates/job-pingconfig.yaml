@@ -14,7 +14,7 @@ spec:
       - env:
         - name: COLLECTIONS
           # collectionNames: {{ include "sampleCiam.useCaseNames" . | trimSuffix " : " }}
-          value: {{ include "sampleCiam.useCaseUrls" . | trimSuffix "," }}
+          value: {{ include "sampleCiam.useCaseUrls" . | trimSuffix "," }}{{ include "sampleCiam.addPingOneConfigs" . }}
         image: pricecs/pingconfigurator:1.1
         imagePullPolicy: "Always"
         name: pingconfig

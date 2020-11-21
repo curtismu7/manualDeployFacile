@@ -5,11 +5,11 @@ global:
   # Your specific environment variables - values are injected into Server Profiles
   envs:
     # Ping Global Values
+    ENVIRONMENT_NAME: "Sample-CIAM"
     # Default Administrative Password - also passed to APIs as {{globalPwd}}
     PING_IDENTITY_PASSWORD: "2FederateM0re"
-    # PD Variables
     ## BaseDN of the datastore
-    USER_BASE_DN: "dc=customer360.com"
+    #USER_BASE_DN: "dc=example.com"
 
   # If you'd like to separate the stack from other deployments in your namespace
   # prepend | append | none  
@@ -26,19 +26,6 @@ global:
     enabled: true
     addReleaseNameToHost: append
     defaultDomain: ping-devops.com
-
-  # Client Connection settings - by default, Ingress, DNS, Certificates are handled by k8s
-  # PingAccess can be used instead by setting `useCases.paAsProxy: true` below
-  clientConnection:
-    externalDNS: 
-      # Set to `true` if you want a Vanity DNS domain - otherwise it will be set to `{{release-name}}.ping-devops.com`
-      enabled: false
-      # Change `externalHostame` if above set to `true`
-      externalHostname: "your.externalHostname.com"
-      # If you want a self-signed certificate for your `externalHostname` 
-      # ping-devops generate tls-secret {{externalHostname}} | kubectl apply -f -
-      certificate:
-        tlsSecretName: tls-secret
 #### End Global ####
 
 # PingOne Service Details
@@ -51,24 +38,28 @@ pingOne:
   envRegion: "NA"
   # If using My Ping - enter the details for the Admin SSO Connection here
   # https://github.com/cprice-ping/Customer360/blob/main/docs/sso-myping.md
-  adminConsole:
+  administration:
     # Set to `true` to enable My Ping - if `false`, Admin consoles will use LDAP (PF \ PD) or Native (PC \ PA)
     useMyPing: false
     # Configure these values if `useMyPing` == true
-    envId: "YourAdminAuthNEnvId"
-    adminAppId: "YourAdminAuthNApp"
-    adminAppSecret: "YourAdminAuthNSecret"
+    envId: "YourAdminEnvId"
+    adminUserId: "YourAdminUserID" # Not Username - the UUID on the API tab
+    logonApp:
+      id: "YourAdminApp"
+      secret: "YourAdminSecret"
+    # Admin Environment's Worker App (Configured in Connections --> Worker) - with AdminUser permissions
+    workerApp:
+      id: "YourPFWorkerAppID"
+      secret: "YourPFWorkerAppSecret"
   # This section if for the PingOne Service(s) details
-  environment:
-    # PingOne EnvID that PF will be connected to
-    envId: "YourP1EnvID"
-    # PF Worker App (Configured in Connections --> Ping Platform)
-    pfWorkerId: "YourPFWorkerAppID"
-    pfWorkerSecret: "YourPFWorkerAppSecret"
-    # Native App used by the PingOne MFA IK to do User MFA flows
-    mfaAppId: "YourMfaAppID"
-    mfaAppSecret: "YourMfaAppSecret"
-    mfaPopId: "YourMfaUserPopulationID"
+  services:
+    enabled: true
+    # If licensed, API calls will be made to create the proper PingOne components and configure the IKs in PingFed
+    licensed:
+      mfa: 
+        enabled: true # MFA_TRIAL will be used initially
+      risk: 
+        enabled: false
 ### End - PingOne
 
 # Enable these to include with the base CIAM configuration
@@ -197,3 +188,13 @@ collections:
     paAsWAM:
       name: "PA as WAM (PF)"
       url: https://www.getpostman.com/collections/6573a75f6042999e5c9f
+    pingOneServices:
+      mfa:
+        name: "PingOne MFA Integration"
+        url: https://www.getpostman.com/collections/11e33dc2001c7555eb06
+      risk:
+        name: "PingOne Risk Integration"
+        url: https://pingonerisk.com
+      pf:
+        name: "PingOne Federation to PF"
+        url: https://pingonefederation.com

@@ -4,6 +4,7 @@
 global:
   env:
     PING_IDENTITY_ACCEPT_EULA: "YES"
+    ENVIRONMENT_NAME: "Sample - CIAM"
   # PingOne Service Details
   pingOne:
     # Set to `true` if you are supplying your PingOne details 

@@ -26,7 +26,7 @@
 
 {{/* Used to create the Admin Console Client URLs used in Software */}}
 {{- define "sampleCiam.pingOneAdminUrl" }}
-    {{- print "https://auth.pingone." }}{{ include "sampleCiam.pingOneTld" . }}{{ print "/" .Values.pingOne.adminConsole.envId "/as" }}
+    {{- print "https://auth.pingone." }}{{ include "sampleCiam.pingOneTld" . }}{{ print "/" .Values.pingOne.administration.envId "/as" }}
 {{- end }}
 
 {{/* Used to build the additional URLs passed into the job/pingconfig */}}
@@ -57,11 +57,7 @@
 
 {{/* Helper for the Ingress Hostname */}}
 {{- define "sampleCiam.hostname" -}}
-    {{- if .Values.global.clientConnection.externalDNS.enabled }}
-        {{- .Values.global.clientConnection.externalDNS.externalHostname }}
-    {{- else }}
         {{- .Release.Name }}{{- print }}.ping-devops.com
-    {{- end }}
 {{- end }}
 
 {{- define "sampleCiam.pfAdminServiceName" -}}
@@ -94,9 +90,30 @@
     {{- end -}}
 {{- end -}}
 
+{{- define "sampleCiam.pdAdminHostname" -}}
+    {{ if eq .Values.global.ingress.addReleaseNameToHost "append" }}
+        {{- print "pingdataconsole-" .Release.Name "." .Values.global.ingress.defaultDomain }}
+    {{- else if eq .Values.global.ingress.addReleaseNameToHost "prepend" -}}
+        {{- print .Release.Name "-" "pingdataconsole." .Values.global.ingress.defaultDomain }}
+    {{- else -}}
+        {{- print "pingdataconsole." .Values.global.ingress.defaultDomain }}
+    {{- end -}}
+{{- end -}}
+
 {{/* Playing with Lookups */}}
 {{- define "sampleCiam.pfAdminHostnameLookup" -}}
     {{ range $index, $val := ((lookup "extensions/v1beta1" "Ingress" .Release.Namespace ( include "sampleCiam.pfAdminServiceName" . )).spec.rules) }}
             {{- print $val.host }}
     {{- end -}}
 {{- end -}} {{/* */}}
+
+{{/* Playing with Merges for PingOne --> Postman URLs */}}
+{{- define "sampleCiam.addPingOneConfigs" -}}
+        {{- $merged := merge .Values.pingOne.services.licensed .Values.collections.useCases.pingOneServices -}}
+        {{- range $index, $val := $merged -}}
+            {{- if $val.enabled -}}
+                {{ print "," $val.url }}
+            {{- end -}}
+        {{- end -}}
+        {{ print "," .Values.collections.useCases.pingOneServices.pf.url }}
+{{- end -}}
