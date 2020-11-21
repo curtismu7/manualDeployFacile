@@ -21,5 +21,3 @@ External Hostname:
 Authentication Samples:
 SAML: https://{{ include "sampleCiam.hostname" . }}/idp/startSSO.ping?PartnerSpId=Sample-SAML
 OIDC: https://{{ include "sampleCiam.hostname" . }}/as/authorization.oauth2?response_type=code&client_id=PingLogon&redirect_uri=https://httpbin.org/anything&scope=openid%20profile
-
-{{ include "sampleCiam.useCaseUrls" . | trimSuffix "," }}{{ include "sampleCiam.addPingOneConfigs" . }}
