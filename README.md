@@ -21,14 +21,14 @@ The Solution can be pre-configured for Admin SSO and PingOne MFA with details fo
 
 This repo contains configuration sets for deployment:
 
-* [Docker Compose](deployment/Compose)
 * [Kubernetes](deployment/Kubernetes)
   * [Helm](deployment/Kubernetes/helm)
+  * [Helm Chart](https://cprice-ping.github.io/Sample-CIAM)
 
 ### Deployment Configuration
 
 The bulk of the configuration is performed by a Postman API Collection:  
-[Customer360 - Postman Collection](https://documenter.getpostman.com/view/1239082/T1LQhmBu)
+[Sample CIAM - Postman Collection](https://www.getpostman.com/collections/620475bf1cb1f223f78a)
 
 [Post Deployment Considerations](docs/post-deployment.md)
 
