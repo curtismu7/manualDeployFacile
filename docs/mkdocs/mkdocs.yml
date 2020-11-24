@@ -1,0 +1,7 @@
+site_name: Sample CIAM
+nav:
+  - Home: index.md
+  - My Ping Integration: sso-myping.md
+  - Helm Values: values.md
+
+theme: readthedocs
