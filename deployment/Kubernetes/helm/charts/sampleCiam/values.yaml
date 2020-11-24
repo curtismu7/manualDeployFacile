@@ -51,7 +51,7 @@ pingOne:
     workerApp:
       id: "YourPFWorkerAppID"
       secret: "YourPFWorkerAppSecret"
-  # This section if for the PingOne Service(s) details
+  # This section is for the PingOne Service(s) details
   services:
     enabled: true
     # If licensed, API calls will be made to create the proper PingOne components and configure the IKs in PingFed
@@ -143,9 +143,6 @@ ping-devops:
 
   pingdatasync:
     enabled: true
-    envs:
-      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git
-      SERVER_PROFILE_PATH: pingdatasync
     logging: INFO
 
   pingcentral:
