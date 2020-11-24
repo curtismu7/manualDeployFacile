@@ -3,9 +3,9 @@
 To access the Admin Console for PC go to:  
 `https://{{PC_HOSTNAME}}:9022`
 
-## User Credentials (Compass)
+## User Credentials (My Ping)
 
-Use the identities configured for this Environment in Compass (See [SSO with Compass](sso-compass.md))
+Use the identities configured for this Environment in Compass (See [SSO with Compass](sso-myping.md))
 
 ## User Credentials (PF - LDAP)
 

@@ -1,11 +1,11 @@
-# Deploy Customer360 using Helm
+# Deploy Sample-CIAM using Helm
 
-Helm is a package deployment tool for Kubernetes. It can be used with [Customer360](../Kubernetes) to deploy all the components of the Solution with a simple command.
+Helm is a package deployment tool for Kubernetes. It can be used with [Sample-CIAM](../Kubernetes) to deploy all the components of the Solution with a simple command.
 
 1. Inject your Ping Devops information into your k8s namespace
 
     ```shell
-    ping-devops generate devops-secret | kubectl apply -f -
+    {{k8s cluster domain}} generate devops-secret | kubectl apply -f -
     ```
 
 2. Install Helm
@@ -17,13 +17,13 @@ Helm is a package deployment tool for Kubernetes. It can be used with [Customer3
 3. Add Helm Repo
 
     ```shell
-    helm repo add ping-solutions https://helm.pingidentity.com/solutions
+    helm repo add sampleCiam https://cprice-ping.github.io/Sample-CIAM
     ```
 
 4. List Ping Solutions Charts
 
     ```shell
-    helm search repo ping-solutions
+    helm search repo
     ```
 
 5. Update local machine with latest charts
@@ -32,24 +32,18 @@ Helm is a package deployment tool for Kubernetes. It can be used with [Customer3
     helm repo update
     ```
 
-6. Create a `values.yaml` file
-    * Simple (Vanilla config - No Admin SSO \ No P1 Services)
-
-        ```yaml
-        # Default values for Customer360.
-        global:
-            license:
-                useDevOpsKey: true
-                acceptEULA: "YES"
-        ```
-
-    * PingOne integration (My Ping | PingOne Services) - [values.yaml](./values.yaml)
-    * Full Customer360 environment (My Ping | PingOne Services | External DNS | PA as Proxy) -  sample [values-full.yaml](./values-full.yaml)
-
-7. Install Customer360
+6. Stand vanilla config (No Admin SSO \ No P1 Services)
 
     ```shell
-    helm install {{Release Name}} ping-solutions/customer360 -f values.yaml
+    helm install {{Release Name}} sampleCiam/ping-sample-ciam
+    ```
+
+7. Create a [values.yaml](./values.yaml) file - PingOne integration (My Ping | PingOne Services)
+
+8. Install Sample-CIAM with values
+
+    ```shell
+    helm install {{Release Name}} sampleCiam/ping-sample-ciam -f values.yaml
     ```
 
 ## Accessing Deployments
@@ -73,7 +67,7 @@ kubectl logs -f service/{{Release Name}}-{{Product}}
 For example:
 
 ```hell
-`kubectl logs -f service/c360-myhelmrelease-pingfederate
+`kubectl logs -f service/myname-myrelease-pingfederate-engine
 ```
 
 View configuration API calls:
@@ -84,16 +78,14 @@ kubectl logs -f job/{{Release Name}}-pingconfig
 
 ### Admin Console URLs
 
-Admin consoles will be available at:
+Deployed Admin consoles URLs will be displayed in NOTES.txt.
 
-`https://{{Product}}-{{Release Name}}.ping-devops.com`
+Sample URLs:
+
+`https://{{Product}}-{{Release Name}}.{{k8s cluster domain}}.com`
 
 | Ping Product | Admin Console URL |
 | ----- | ----- |
-| PingFederate | `https://pingfederate-{{Release Name}}.ping-devops.com/pingfederate` |
-| PingAccess | `https://pingaccess-{{Release Name}}.ping-devops.com` |
-| PingCentral | `https://pingcentral-{{Release Name}}.ping-devops.com` |
-| PingDirectory | `https://pingdataconsole-{{Release Name}}.ping-devops.com/console` |
-| PingDataSync | `https://pingdataconsole-{{Release Name}}.ping-devops.com` |
-| PingDataGov | `https://pingdataconsole-{{Release Name}}.ping-devops.com/console` |
-| PingDataGov-PAP | `https://pingdatagov-pap-{{Release Name}}.ping-devops.com` |
+| PingFederate | `https://pingfederate-{{Release Name}}.{{k8s cluster domain}}.com/pingfederate` |
+| PingDirectory | `https://pingdataconsole-{{Release Name}}.{{k8s cluster domain}}.com` |
+| PingDataSync | `https://pingdataconsole-{{Release Name}}.{{k8s cluster domain}}.com` |

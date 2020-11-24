@@ -3,12 +3,14 @@ This chart installs a CIAM Solution stack of Ping products.
 Enabled Use Cases:
 {{ include "sampleCiam.useCaseNames" . }}
 
+Environment Name: {{ .Values.global.envs.ENVIRONMENT_NAME }}
+
 Product Consoles:
-{{- if .Values.pingOne.adminConsole.useMyPing }}
-My Ping: https://console.pingone.{{ include "sampleCiam.pingOneTld" .}}/?env={{ .Values.pingOne.adminConsole.envId }}#/home?nav=home
+{{- if .Values.pingOne.administration.useMyPing }}
+My Ping: https://console.pingone.{{ include "sampleCiam.pingOneTld" .}}?env={{ .Values.pingOne.administration.envId }}#/home?nav=home
 {{ end }}
-PingDirectory: https://pingdataconsole-{{ .Release.Name }}.ping-devops.com/console
-PingFederate: https://pingfederate-{{ .Release.Name }}.ping-devops.com/pingfederate
+PingDirectory: https://{{ include "sampleCiam.pdAdminHostname" . }}
+PingFederate: https://{{ include "sampleCiam.pfAdminHostname" . }}/pingfederate
 {{if .Values.useCases.delegatedAdministration.enabled }}
 Delegator: https://{{ include "sampleCiam.hostname" . }}/delegator
 {{- end }}

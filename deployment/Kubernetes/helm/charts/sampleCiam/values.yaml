@@ -5,11 +5,11 @@ global:
   # Your specific environment variables - values are injected into Server Profiles
   envs:
     # Ping Global Values
+    ENVIRONMENT_NAME: "Sample-CIAM"
     # Default Administrative Password - also passed to APIs as {{globalPwd}}
     PING_IDENTITY_PASSWORD: "2FederateM0re"
-    # PD Variables
     ## BaseDN of the datastore
-    USER_BASE_DN: "dc=customer360.com"
+    #USER_BASE_DN: "dc=example.com"
 
   # If you'd like to separate the stack from other deployments in your namespace
   # prepend | append | none  
@@ -23,20 +23,44 @@ global:
   # Determines if the DevOps Ingress config is applied
   # Set to `false` to use a single Client-facing ingress to pul all front-channel services on one hostname
   ingress:
-    enabled: false
+    enabled: true
+    addReleaseNameToHost: append
+    defaultDomain: ping-devops.com
+#### End Global ####
 
-  # Client Connection settings - by default, Ingress, DNS, Certificates are handled by k8s
-  # PingAccess can be used instead by setting `useCases.paAsProxy: true` below
-  clientConnection:
-    externalDNS: 
-      # Set to `true` if you want a Vanity DNS domain - otherwise it will be set to `{{release-name}}.ping-devops.com`
-      enabled: false
-      # Change `externalHostame` if above set to `true`
-      externalHostname: "your.externalHostname.com"
-      # If you want a self-signed certificate for your `externalHostname` 
-      # ping-devops generate tls-secret {{externalHostname}} | kubectl apply -f -
-      certificate:
-        tlsSecretName: tls-secret
+# PingOne Service Details
+pingOne:
+  # Set to `true` if you are supplying your PingOne details 
+  # C360 leverages PingOne MFA by default
+  usePingOneServices: true
+  # This configures the proper endpoints for My Ping and PingOne Service IKs
+  # PingOne Regions - "NA" | "EU" | "AP"
+  envRegion: "NA"
+  # If using My Ping - enter the details for the Admin SSO Connection here
+  # https://github.com/cprice-ping/Customer360/blob/main/docs/sso-myping.md
+  administration:
+    # Set to `true` to enable My Ping - if `false`, Admin consoles will use LDAP (PF \ PD) or Native (PC \ PA)
+    useMyPing: false
+    # Configure these values if `useMyPing` == true
+    envId: "YourAdminEnvId"
+    adminUserId: "YourAdminUserID" # Not Username - the UUID on the API tab
+    logonApp:
+      id: "YourAdminApp"
+      secret: "YourAdminSecret"
+    # Admin Environment's Worker App (Configured in Connections --> Worker) - with AdminUser permissions
+    workerApp:
+      id: "YourPFWorkerAppID"
+      secret: "YourPFWorkerAppSecret"
+  # This section is for the PingOne Service(s) details
+  services:
+    enabled: true
+    # If licensed, API calls will be made to create the proper PingOne components and configure the IKs in PingFed
+    licensed:
+      mfa: 
+        enabled: true # MFA_TRIAL will be used initially
+      risk: 
+        enabled: false
+### End - PingOne
 
 # Enable these to include with the base CIAM configuration
 useCases:
@@ -60,35 +84,7 @@ useCases:
   # Server Profile: https://github.com/cprice-ping/Profile-DelAdmin
   delegatedAdministration: 
     enabled: true
-
-# PingOne Service Details
-pingOne:
-  # Set to `true` if you are supplying your PingOne details 
-  # C360 leverages PingOne MFA by default
-  usePingOneServices: true
-  # This configures the proper endpoints for My Ping and PingOne Service IKs
-  # PingOne Regions - "NA" | "EU" | "AP"
-  envRegion: "NA"
-  # If using My Ping - enter the details for the Admin SSO Connection here
-  # https://github.com/cprice-ping/Customer360/blob/main/docs/sso-myping.md
-  adminConsole:
-    # Set to `true` to enable My Ping - if `false`, Admin consoles will use LDAP (PF \ PD) or Native (PC \ PA)
-    useMyPing: false
-    # Configure these values if `useMyPing` == true
-    envId: "YourAdminAuthNEnvId"
-    adminAppId: "YourAdminAuthNApp"
-    adminAppSecret: "YourAdminAuthNSecret"
-  # This section if for the PingOne Service(s) details
-  environment:
-    # PingOne EnvID that PF will be connected to
-    envId: "YourP1EnvID"
-    # PF Worker App (Configured in Connections --> Ping Platform)
-    pfWorkerId: "YourPFWorkerAppID"
-    pfWorkerSecret: "YourPFWorkerAppSecret"
-    # Native App used by the PingOne MFA IK to do User MFA flows
-    mfaAppId: "YourMfaAppID"
-    mfaAppSecret: "YourMfaAppSecret"
-    mfaPopId: "YourMfaUserPopulationID"
+#### End - Use Cases
 
 ## Product Specific values
 # DevOps Keys and \ or License files can be applied to the container
@@ -99,11 +95,11 @@ ping-devops:
   pingdirectory:
     enabled: true
     envs: 
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git
+      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git
       SERVER_PROFILE_PATH: pingdirectory
     logging: INFO
-    ingress:
-      enabled: false
+    #ingress:
+    #  enabled: false
     container:
       replicaCount: 1
     services:
@@ -118,11 +114,16 @@ ping-devops:
   pingfederate-admin:
     enabled: true
     envs:
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git
+      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git
       SERVER_PROFILE_PATH: pingfederate   
     logging: INFO
     ingress:
-      enabled: false
+      hosts:
+        - host: pingfederate-admin._defaultDomain_
+          paths:
+          - path: /
+            backend:
+              servicePort: 443 
     services:
       # Allows OIDC callbacks to PF through the GSA Ingress
       # Comment out `admin` section to default to :9999
@@ -133,31 +134,26 @@ ping-devops:
   pingfederate-engine:
     enabled: true
     envs:
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git
+      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git
       SERVER_PROFILE_PATH: pingfederate
       PF_ADMIN_PORT: "443"
     logging: INFO
-    ingress:
-      enabled: false
+    #ingress:
+    #  enabled: false
 
   pingdatasync:
     enabled: true
-    envs:
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git
-      SERVER_PROFILE_PATH: pingdatasync
     logging: INFO
-    ingress:
-      enabled: false
 
   pingcentral:
     enabled: false
     tlsBlindTrust: true
     tlsVerifyHostnames: false
     envs:
-      SERVER_PROFILE_URL: https://github.com/pingidentity/Customer360.git 
+      SERVER_PROFILE_URL: https://github.com/cprice-ping/Sample-CIAM.git 
       SERVER_PROFILE_PATH: pingcentral/logging
       SERVER_PROFILE_PARENT: DATA
-      SERVER_PROFILE_DATA_URL: https://github.com/pingidentity/Customer360.git
+      SERVER_PROFILE_DATA_URL: https://github.com/cprice-ping/Sample-CIAM.git
       SERVER_PROFILE_DATA_PATH: pingcentral/external-mysql-db
     logging: INFO
 
@@ -189,3 +185,13 @@ collections:
     paAsWAM:
       name: "PA as WAM (PF)"
       url: https://www.getpostman.com/collections/6573a75f6042999e5c9f
+    pingOneServices:
+      mfa:
+        name: "PingOne MFA Integration"
+        url: https://www.getpostman.com/collections/11e33dc2001c7555eb06
+      risk:
+        name: "PingOne Risk Integration"
+        url: https://pingonerisk.com
+      pf:
+        name: "PingOne Federation to PF"
+        url: https://pingonefederation.com

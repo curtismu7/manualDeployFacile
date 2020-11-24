@@ -49,12 +49,3 @@
 {{- define "pingports.pcAdminPort" -}}
     {{- print 9022 }} 
 {{- end }}
-
-{{/* Playing with Lookups 
-{{- define "pingservices.name" -}}
-    {{ range $index, $val := (lookup "v1" "Service" .Release.Namespace "").items }}
-        {{ if ( index $val.metadata.annotations "meta.helm.sh/release-name" ) }}
-            {{ print $val.metadata.name -}}
-        {{- end -}}
-    {{- end -}}
-{{- end -}} */}}

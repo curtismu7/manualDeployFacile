@@ -23,4 +23,5 @@
 .vscode/
 # Test files
 test-values.yaml
-customer360-*.tgz
+ping-sample-ciam*.tgz
+values-*

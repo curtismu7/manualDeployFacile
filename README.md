@@ -21,24 +21,17 @@ The Solution can be pre-configured for Admin SSO and PingOne MFA with details fo
 
 This repo contains configuration sets for deployment:
 
-* [Docker Compose](deployment/Compose)
 * [Kubernetes](deployment/Kubernetes)
   * [Helm](deployment/Kubernetes/helm)
+  * [Helm Chart](https://cprice-ping.github.io/Sample-CIAM)
 
 ### Deployment Configuration
 
 The bulk of the configuration is performed by a Postman API Collection:  
-[Customer360 - Postman Collection](https://documenter.getpostman.com/view/1239082/T1LQhmBu)
-
-[Post Deployment Considerations](docs/post-deployment.md)
+[Sample CIAM - Postman Collection](https://www.getpostman.com/collections/620475bf1cb1f223f78a)
 
 ## Solution Configuration
 
 | Product | Console URL |
 | ----- | ----- |
-| My Ping Console | `https://console.pingone.com/index.html?env={{myPingEnvId}}`
-| [PingCentral](docs/solution-pc.md) | `https://{{PC_HOSTNAME}}:9022` |
-| [PingDataSync](docs/solution-pd.md) | `https://{{PD_HOSTNAME}}:8443/console` |
-| [PingDirectory](docs/solution-pd.md) | `https://{{PD_HOSTNAME}}:8443/console` |
-| [PingFederate](docs/solution-pf.md) | `https://{{PF_HOSTNAME}}:9999/pingfederate` |
-| PingOne MFA | Access from My Ping Console |
+| My Ping Console | `https://console.pingone.com/index.html?env={{Your Admin EnvId}}#/home/`
