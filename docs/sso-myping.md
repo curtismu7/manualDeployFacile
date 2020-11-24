@@ -25,15 +25,8 @@ For now, there's a set of manual steps you need to make in your PingOne tenant -
 
 * Create new Connection:
   * Select **Add Application**
-  * Choose **Web App**, then **OIDC**
-  * Configure `redirect_uri` as shown in the table below
-    * Note: Each Product has a different format for the `redirect_uri` - PingFed and PingCentral use their `.properties` file to create it.
-
-    | Product | Redirect_URI |
-    | --- | --- |
-    | PingCentral | `{{PingCentralHost}}/login/oauth2/code/pingcentral` |
-    | PingFederate | `{{PFAdminURL}}/pingfederate/app?service=finishsso` |
-    | PingAccess (6.2 Beta) | `{{PAAdminURL}}/pa/oidc/cb` |
+  * Choose **Native App**, then **OIDC**
+  * Configure 
 
   * In **Attribute Mapping** add the following attributes
 
