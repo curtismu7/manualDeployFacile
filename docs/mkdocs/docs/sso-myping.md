@@ -10,6 +10,8 @@
 4. Add Administrator User(s) - add the values (see below) to the Users
 5. Create new Connections
 
+This can be done for a Single Admin --> Multiple Envs, or for a seperate Admin Env where you want Branding \ different Policy for the Administrators
+
 ### Directory Settings
 
 * Directory (Settings --> Directory --> Attributes)
@@ -64,4 +66,4 @@
 
 #### Roles
 
-Roles should be inherited according to your Admin Account rights - PoC Environments will want to limit this.
+Roles should be inherited according to your Admin Account rights - Separate PoC Environments will want to limit this to just the Administrative Environment

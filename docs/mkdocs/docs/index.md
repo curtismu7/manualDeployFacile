@@ -1,6 +1,6 @@
 # Welcome to a Sample CIAM 
 
-This repo contains a full representation of a CIAM implementation of PingIdentity Software. This stack is designed to be deployed into a Kubernetes cluster, using Helm. 
+This repo contains a starting representation of a CIAM implementation of PingIdentity Software. This stack is designed to be deployed into a Kubernetes cluster, using Helm.
 
 It uses the Ping DevOps chart [Ping DevOps Helm](https://helm.pingidentity.com) and layers over a CIAM-focused configuration.
 
@@ -17,7 +17,7 @@ It contains the following products:
 In order to deply this chart, the following is required:
 
 * A Kubernetes cluster
-* Helm v3.0.0+
+* Helm v3 +
 * A PingOne Account (See [My Ping Integration](./sso-myping))
 
 ## Helm Deployment
