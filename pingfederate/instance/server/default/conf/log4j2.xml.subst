@@ -1184,7 +1184,7 @@
 
         <Logger name="com.pingidentity.adapters.pingone.risk.shade" level="INFO"/>
         <Logger name="com.pingidentity.adapters.pingone.mfa.shade" level="INFO"/>
-        <Logger name="com.pingidentity.integrations.provisioner.pingone.shade" level="INFO"/>
+        <Logger name="com.pingidentity.integrations.provisioner.pingone.shaded" level="INFO"/>
         <Logger name="org.apache.http.wire" level="INFO" />
         <Logger name="com.pingidentity.pf.email" level="INFO" />
         <Logger name="org.sourceid" level="${PF_LOG_LEVEL}" />
