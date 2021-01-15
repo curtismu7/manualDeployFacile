@@ -30,6 +30,7 @@ echo Removing bundled files
 echo PF AuthN API
 rm -f /opt/out/instance/server/default/lib/pf-authn-api-sdk-1.0.0.48.jar
 rm -f /opt/out/instance/server/default/lib/pf-authn-api-sdk-1.0.0.54.jar
+ls /opt/out/instance/server/default/lib/pf-authn-api-sdk-*
 echo PingID IK
 # PingID IK
 rm -f /opt/out/instance/server/default/deploy/pf-pingid-idp-adapter-2.6.jar
