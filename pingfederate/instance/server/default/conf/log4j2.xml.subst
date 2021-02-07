@@ -1182,11 +1182,11 @@
         <!-- Limit categories -->
         <!-- ================ -->
 
-        <!-- Dialing back the PingOne IK logging -->
+        <!-- Dialing back the PingOne IKs logging -->
         <Logger name="com.pingidentity.oobauth.pingone.mfa" level="INFO" />
         <Logger name="com.pingidentity.adapters.pingone.risk.shade" level="INFO" />
         <Logger name="com.pingidentity.adapters.pingone.mfa.shade" level="INFO"/>
-        <Logger name="com.pingidentity.adapters.pingone.verify.shade.org.apache.hc" level="INFO"/>
+        <Logger name="com.pingidentity.adapters.pingone.verify.shade.org" level="INFO"/>
         <Logger name="com.pingidentity.integrations.provisioner.pingone.shaded" level="INFO"/>
         
         <!-- Dialing back DEBUG things -->
@@ -1196,6 +1196,7 @@
         <Logger name="com.pingidentity.jgroups.MuxInvocationHandler" level="INFO" />
         <Logger name="org.sourceid.util.log.internal.TrackingIdSupport" level="INFO" />
         <Logger name="org.sourceid.saml20.domain.mgmt.impl.ReplicationStateManagerImpl" level="INFO" />
+        <Logger name="com.pingidentity.common.util.timers.EventTimer" level="INFO" />
 
         <Logger name="org.apache.http.wire" level="INFO" />
         <Logger name="com.pingidentity.pf.email" level="INFO" />
