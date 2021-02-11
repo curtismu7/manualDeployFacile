@@ -157,9 +157,9 @@
             "auditLevel": "OFF"
         },
         "pingFederateOAuth": {
-            "clientId": "rs_client",
+            "clientId": "",
             "clientSecret": {
-                "value": "2Federate"
+                "value": ""
             },
             "c  acheTokens": false,
             "tokenTimeToLiveSeconds": -1,
@@ -167,11 +167,11 @@
             "sendAudience": false,
             "accessValidatorId": 1,
             "useTokenIntrospection": false,
-            "name": "PingFederate"
+            "name": ""
         },
         "pingFederateRuntime": {
             "description": null,
-            "issuer": "https://${PF_ENGINE_PRIVATE_HOSTNAME}:${PF_ENGINE_PRIVATE_PORT_HTTPS}",
+            "issuer": "",
             "trustedCertificateGroupId": 2,
             "useProxy": false,
             "useSlo": false,
@@ -214,110 +214,9 @@
             "contextRoot": "/pa"
         },
         "resources": [],
-        "rules": [
-            {
-                "className": "com.pingidentity.pa.policy.rewrite.SynapseURLRewritePolicyInterceptor",
-                "id": 1,
-                "name": "echo to root",
-                "supportedDestinations": [
-                    "Site"
-                ],
-                "configuration": {
-                    "mapFrom": "/echo/(.*)",
-                    "mapTo": "/$1"
-                }
-            },
-            {
-                "className": "com.pingidentity.pa.policy.RejectionRule",
-                "id": 2,
-                "name": "json error",
-                "supportedDestinations": [
-                    "Site",
-                    "Agent"
-                ],
-                "configuration": {
-                    "rejectionHandler": "2"
-                }
-            }
-        ],
-        "siteAuthenticators": [
-            {
-                "className": "com.pingidentity.pa.siteauthenticators.BasicAuthTargetSiteAuthenticator",
-                "id": 1,
-                "name": "pingdirectory_rest_api_authn",
-                "configuration": {
-                    "username": "${ROOT_USER_DN}",
-                    "password": {
-                        "value": "${PING_IDENTITY_PASSWORD}"
-                    }
-                }
-            }
-        ],
-        "sites": [
-            {
-                "id": 1,
-                "name": "anything",
-                "targets": [
-                    "httpbin:80",
-                    "httpbin.org:80"
-                ],
-                "secure": false,
-                "trustedCertificateGroupId": 0,
-                "sendPaCookie": true,
-                "useTargetHostHeader": false,
-                "keepAliveTimeout": 0,
-                "maxConnections": -1,
-                "maxWebSocketConnections": -1,
-                "siteAuthenticatorIds": [],
-                "skipHostnameVerification": false,
-                "expectedHostname": null,
-                "availabilityProfileId": 1,
-                "loadBalancingStrategyId": 0,
-                "useProxy": false
-            },
-            {
-                "id": 2,
-                "name": "pingfederate_docker",
-                "targets": [
-                    "${PF_ENGINE_PRIVATE_HOSTNAME}:${PF_ENGINE_PRIVATE_PORT_HTTPS}"
-                ],
-                "secure": true,
-                "trustedCertificateGroupId": 2,
-                "sendPaCookie": true,
-                "useTargetHostHeader": false,
-                "keepAliveTimeout": 0,
-                "maxConnections": -1,
-                "maxWebSocketConnections": -1,
-                "siteAuthenticatorIds": [],
-                "skipHostnameVerification": false,
-                "expectedHostname": null,
-                "availabilityProfileId": 1,
-                "loadBalancingStrategyId": 0,
-                "useProxy": false
-            },
-            {
-                "id": 3,
-                "name": "pingdirectory_rest_api",
-                "targets": [
-                    "${PD_ENGINE_PRIVATE_HOSTNAME}:${HTTPS_PORT}"
-                ],
-                "secure": true,
-                "trustedCertificateGroupId": 2,
-                "sendPaCookie": false,
-                "useTargetHostHeader": true,
-                "keepAliveTimeout": 0,
-                "maxConnections": -1,
-                "maxWebSocketConnections": -1,
-                "siteAuthenticatorIds": [
-                    1
-                ],
-                "skipHostnameVerification": true,
-                "expectedHostname": null,
-                "availabilityProfileId": 1,
-                "loadBalancingStrategyId": 0,
-                "useProxy": false
-            }
-        ],
+        "rules": [],
+        "siteAuthenticators": [],
+        "sites": [],
         "tokenProvider": {
             "useThirdParty": false,
             "type": "PingFederate"
