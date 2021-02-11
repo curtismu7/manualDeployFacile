@@ -219,7 +219,7 @@
         "sites": [],
         "tokenProvider": {
             "useThirdParty": false,
-            "type": "PingFederate"
+            "type": ""
         },
         "unknownResources": {
             "errorStatusCode": 403,
