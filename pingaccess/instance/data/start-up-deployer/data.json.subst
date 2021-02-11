@@ -156,28 +156,6 @@
             "secure": true,
             "auditLevel": "OFF"
         },
-        "pingFederateOAuth": {
-            "clientId": "",
-            "clientSecret": {
-                "value": ""
-            },
-            "c  acheTokens": false,
-            "tokenTimeToLiveSeconds": -1,
-            "subjectAttributeName": "Username",
-            "sendAudience": false,
-            "accessValidatorId": 1,
-            "useTokenIntrospection": false,
-            "name": ""
-        },
-        "pingFederateRuntime": {
-            "description": null,
-            "issuer": "",
-            "trustedCertificateGroupId": 2,
-            "useProxy": false,
-            "useSlo": false,
-            "stsTokenExchangeEndpoint": null,
-            "skipHostnameVerification": true
-        },
         "rejectionHandlers": [
             {
                 "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
@@ -217,10 +195,6 @@
         "rules": [],
         "siteAuthenticators": [],
         "sites": [],
-        "tokenProvider": {
-            "useThirdParty": false,
-            "type": ""
-        },
         "unknownResources": {
             "errorStatusCode": 403,
             "errorTemplateFile": "general.error.page.template.html",
