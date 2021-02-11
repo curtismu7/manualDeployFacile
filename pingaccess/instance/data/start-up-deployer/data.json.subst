@@ -351,42 +351,6 @@
             "encryptionAlgorithm": "A128CBC-HS256",
             "nonceCookieTimeToLiveInMinutes": 5
         },
-        "webSessions": [
-            {
-                "id": 1,
-                "name": "pingaccess_global",
-                "pkceChallengeType": "SHA256",
-                "refreshUserInfoClaimsInterval": 60,
-                "requestPreservationType": "POST",
-                "webStorageType": "SessionStorage",
-                "cacheUserAttributes": false,
-                "scopes": [
-                    "address",
-                    "email",
-                    "phone",
-                    "profile"
-                ],
-                "oidcLoginType": "Code",
-                "enableRefreshUser": true,
-                "requestProfile": true,
-                "sendRequestedUrlToProvider": true,
-                "validateSessionIsAlive": false,
-                "clientCredentials": {
-                    "clientId": "pingaccessAc",
-                    "clientSecret": {
-                        "value": "${PING_IDENTITY_PASSWORD}"
-                    }
-                },
-                "audience": "PingAccess",
-                "cookieDomain": "",
-                "cookieType": "Encrypted",
-                "idleTimeoutInMinutes": 60,
-                "sessionTimeoutInMinutes": 240,
-                "httpOnlyCookie": true,
-                "secureCookie": true,
-                "sameSite": "Lax",
-                "pfsessionStateCacheInSeconds": 60
-            }
-        ]
+        "webSessions": []
     }
 }
