@@ -1197,6 +1197,10 @@
         <Logger name="org.sourceid.util.log.internal.TrackingIdSupport" level="INFO" />
         <Logger name="org.sourceid.saml20.domain.mgmt.impl.ReplicationStateManagerImpl" level="INFO" />
         <Logger name="com.pingidentity.common.util.timers.EventTimer" level="INFO" />
+        <Logger name="com.pingidentity.crypto.jwk.JwkState" level="INFO" />
+        <Logger name="org.sourceid.saml20.state.IdpSessionRegistrySupport" level="INFO" />
+        <Logger name="org.sourceid.saml20.domain.datasource.tag.DataSourceTagUtil" level="INFO" />
+        <Logger name="org.sourceid.saml20.bindings.BindingServiceImpl" level="INFO" />
 
         <Logger name="org.apache.http.wire" level="INFO" />
         <Logger name="com.pingidentity.pf.email" level="INFO" />
