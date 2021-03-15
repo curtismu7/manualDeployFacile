@@ -1187,14 +1187,14 @@
         <Logger name="com.pingidentity" level="${PF_LOG_LEVEL}" />
         <!-- -->
 
-        <!-- Dialing back the PingOne IKs logging -->
+        <!-- Dialing down the PingOne IKs logging -->
         <Logger name="com.pingidentity.oobauth.pingone.mfa" level="INFO" />
         <Logger name="com.pingidentity.adapters.pingone.risk.shade" level="INFO" />
         <Logger name="com.pingidentity.adapters.pingone.mfa.shade" level="INFO"/>
         <Logger name="com.pingidentity.adapters.pingone.verify.shade.org" level="INFO"/>
         <Logger name="com.pingidentity.integrations.provisioner.pingone.shaded" level="INFO"/>
         
-        <!-- Dialing back DEBUG things -->
+        <!-- Dialing down other DEBUG things -->
         <Logger name="org.sourceid.servlet.HttpServletRespProxy" level="INFO" />
         <Logger name="org.sourceid.websso.servlet.IntegrationControllerServlet" level="INFO" />
         <Logger name="org.sourceid.saml20.service.impl" level="INFO" />
@@ -1206,6 +1206,10 @@
         <Logger name="org.sourceid.saml20.state.IdpSessionRegistrySupport" level="INFO" />
         <Logger name="org.sourceid.saml20.domain.datasource.tag.DataSourceTagUtil" level="INFO" />
         <Logger name="org.sourceid.saml20.bindings.BindingServiceImpl" level="INFO" />
+        <Logger name="org.sourceid.openid.connect.util.HttpConnectionPoolingManager" level="INFO" />
+        <Logger name="com.pingidentity.configservice.impl.ConfigStoreImpl" level="INFO" />
+        <Logger name="org.sourceid.saml20.domain.mgmt.impl.PluginManagementSupport" level="INFO" />
+        <Logger name="org.sourceid.saml20.service.session.StoredSessionServiceImpl" level="INFO" />
 
         <!-- log4j2.xml defaults -->
         <Logger name="org.apache.http.wire" level="INFO" />
