@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30" packages="com.pingidentity.log4j.pattern,com.pingidentity.log4j.layout,com.pingidentity.log4j.appender" shutdownHook="disable">
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <JsonLayout complete="false" compact="true" eventEol="true">
+            </JsonLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+          <Root>
+            <AppenderRef ref="CONSOLE"/>
+          </Root>
+
+        <!-- Set these to DEBUG to log more things -->
+        <Logger name="org.sourceid" level="${PF_LOG_LEVEL}" />
+        <Logger name="com.pingidentity" level="${PF_LOG_LEVEL}" />
+        <!-- -->
+
+        <!-- Dialing down the PingOne IKs logging -->
+        <Logger name="com.pingidentity.oobauth.pingone.mfa" level="INFO" />
+        <Logger name="com.pingidentity.adapters.pingone.risk.shade" level="INFO" />
+        <Logger name="com.pingidentity.adapters.pingone.mfa.shade" level="INFO"/>
+        <Logger name="com.pingidentity.adapters.pingone.verify.shade.org" level="INFO"/>
+        <Logger name="com.pingidentity.integrations.provisioner.pingone.shaded" level="INFO"/>
+        
+        <!-- Dialing down other DEBUG things -->
+        <Logger name="org.sourceid.servlet.HttpServletRespProxy" level="INFO" />
+        <Logger name="org.sourceid.websso.servlet.IntegrationControllerServlet" level="INFO" />
+        <Logger name="org.sourceid.saml20.service.impl" level="INFO" />
+        <Logger name="com.pingidentity.jgroups.MuxInvocationHandler" level="INFO" />
+        <Logger name="org.sourceid.util.log.internal.TrackingIdSupport" level="INFO" />
+        <Logger name="org.sourceid.saml20.domain.mgmt.impl.ReplicationStateManagerImpl" level="INFO" />
+        <Logger name="com.pingidentity.common.util.timers.EventTimer" level="INFO" />
+        <Logger name="com.pingidentity.crypto.jwk.JwkState" level="INFO" />
+        <Logger name="org.sourceid.saml20.state.IdpSessionRegistrySupport" level="INFO" />
+        <Logger name="org.sourceid.saml20.domain.datasource.tag.DataSourceTagUtil" level="INFO" />
+        <Logger name="org.sourceid.saml20.bindings.BindingServiceImpl" level="INFO" />
+        <Logger name="org.sourceid.openid.connect.util.HttpConnectionPoolingManager" level="INFO" />
+        <Logger name="com.pingidentity.configservice.impl.ConfigStoreImpl" level="INFO" />
+        <Logger name="org.sourceid.saml20.domain.mgmt.impl.PluginManagementSupport" level="INFO" />
+        <Logger name="org.sourceid.saml20.service.session.StoredSessionServiceImpl" level="INFO" />
+
+        <Logger name="org.apache.http.wire" level="INFO" />
+        <Logger name="com.pingidentity.pf.email" level="INFO" />
+        <Logger name="org.sourceid.saml20.util.SystemUtil" level="INFO" additivity="false">
+            <AppenderRef ref="CONSOLE" />
+        </Logger>
+        <Logger name="com.jolbox" level="OFF" />
+        <Logger name="com.pingidentity.crypto.CertificateServiceImpl" level="INFO" />
+        <Logger name="org.sourceid.common.dsig" level="INFO" />
+        <Logger name="org.sourceid.saml20.domain.mgmt.impl.PluginSupport" level="INFO" />
+        <Logger name="com.pingidentity.common.util.ErrorHandler" level="INFO" additivity="false">
+            <AppenderRef ref="CONSOLE" />
+        </Logger>
+        <Logger name="com.pingidentity.appserver.jetty" level="INFO" />
+        <Logger name="org.apache" level="INFO" />
+        <Logger name="org.eclipse.jetty" level="INFO" />
+        <Logger name="org.eclipse.jetty.io.nio" level="ERROR" />
+        <Logger name="org.eclipse.jetty.jmx.ObjectMBean" level="ERROR" />
+        <Logger name="org.eclipse.jetty.server.session" level="WARN" />
+        <Logger name="org.apache.hivemind" level="INFO" />
+        <Logger name="org.jgroups" level="INFO" />
+        <Logger name="com.pingidentity.jgroups.org.jgroups" level="WARN" />
+        <Logger name="com.pingidentity.aws" level="INFO" />
+        <Logger name="com.amazonaws" level="INFO" />
+        <Logger name="com.pingidentity.locale" level="INFO" />
+        <Logger name="com.pingidentity.sdk.locale" level="INFO" />
+        <Logger name="org.apache.axis" level="INFO" />
+        <Logger name="hsqldb.db" level="ERROR" />
+        <Logger name="org.sourceid.websso.servlet.IntegrationControllerServlet" level="INFO" />
+        <Logger name="org.sourceid.servlet.HttpServletRespProxy" level="INFO" />
+        <Logger name="org.sourceid.saml20.bindings.BindingServiceImpl" level="INFO" />
+        <Logger name="org.sourceid.common.IDGenerator" level="INFO" />
+        <Logger name="com.pingidentity.appserver.jetty.PingFederateInit" level="ERROR" additivity="false" includeLocation="false">
+            <AppenderRef ref="CONSOLE" />
+        </Logger>
+        <Logger name="com.pingidentity.appserver.jetty.PingFederateInit" level="INFO" additivity="false" includeLocation="false">
+            <AppenderRef ref="CONSOLE" />
+        </Logger>
+        <Logger name="org.pingidentity.RunPF" level="ERROR" additivity="false" includeLocation="false">
+            <AppenderRef ref="CONSOLE" />
+        </Logger>
+    </Loggers>
+</Configuration>
