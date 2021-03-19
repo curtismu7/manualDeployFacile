@@ -18,9 +18,10 @@
     <Loggers>
 
     <!-- PingAccess Loggers -->
-    <AsyncLogger name="com.pingidentity" level="DEBUG"/>
+    <AsyncLogger name="com.pingidentity" level="${PA_LOG_LEVEL}"/>
 
 	<AsyncLogger name="com.pingidentity.pa.core.interceptor" level="INFO" />
+    <AsyncLogger name="com.pingidentity.pa.oidc.UpdateTokenInterceptor" level="INFO" />
 	<AsyncLogger name="com.pingidentity.pa.core.transport.http.async" level="INFO" />
 	<AsyncLogger name="com.pingidentity.pa.ha.HighAvailabilityConfigurationManager" level="INFO" />
 
@@ -72,7 +73,7 @@
         <!-- ======================= -->
         <!-- Set up the Root logger  -->
         <!-- ======================= -->
-        <AsyncRoot level="DEBUG" includeLocation="false">
+        <AsyncRoot level="${PA_LOG_LEVEL}" includeLocation="false">
             <AppenderRef ref="File"/>
             <AppenderRef ref="CONSOLE" />
             <!--<AppenderRef ref="CONSOLE" />-->
