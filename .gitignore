@@ -2,3 +2,4 @@
 */.DS_Store
 **/.DS_Store
 */mkdocs
+deployment/Kubernetes/helm/charts/sampleCiam/ping-sample-ciam-0.1.0.tgz
