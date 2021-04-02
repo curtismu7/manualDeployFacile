@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:config xmlns:con="http://www.sourceid.org/2004/05/config">
+    <con:map name="bearer-access-token-management-plugin-sequence">
+        <con:item name="jwtSample">621887</con:item>
+        <con:item name="ref">1327654</con:item>
+        <con:item name="jwt">1677057</con:item>
+    </con:map>
+    <con:map name="bearer-access-token-management-plugins">
+        <con:item name="jwtSample">com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin</con:item>
+        <con:item name="ref">org.sourceid.oauth20.token.plugin.impl.ReferenceBearerAccessTokenManagementPlugin</con:item>
+        <con:item name="jwt">com.pingidentity.pf.access.token.management.plugins.JwtBearerAccessTokenManagementPlugin</con:item>
+    </con:map>
+    <con:item name="bearer-access-token-management-plugins-default">jwtSample</con:item>
+</con:config>

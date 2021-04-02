@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PluginConfiguration isInheritExtendedContractAttributes="false" name="smtp" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+    <urn:Fields>
+        <urn:Field name="From Address">from@example.com</urn:Field>
+        <urn:Field name="Email Server">smtp.mailtrap.io</urn:Field>
+        <urn:Field name="SMTP Port">465</urn:Field>
+        <urn:Field name="Encryption Method">TLS</urn:Field>
+        <urn:Field name="SMTPS Port">587</urn:Field>
+        <urn:Field name="Verify Hostname">false</urn:Field>
+        <urn:Field name="UTF-8 Message Header Support">false</urn:Field>
+        <urn:Field name="Username">a523f686d2a860</urn:Field>
+        <urn:Field name="Password">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiN0JPYzdOcWRTbCIsInZlcnNpb24iOiIxMC4yLjIuMCJ9..RPcIJQ-3J3Jr5qKvPrUTAg.eahf4UzYWowjMuUO92rxfg.yPbbJM5vJo1fxJzvitEeFg</urn:Field>
+        <urn:Field name="Test Address">cmuir@pingidentity.com</urn:Field>
+        <urn:Field name="Connection Timeout">30</urn:Field>
+        <urn:Field name="Retry Attempt">2</urn:Field>
+        <urn:Field name="Retry Delay">2</urn:Field>
+        <urn:Field name="Enable SMTP Debugging Messages">false</urn:Field>
+    </urn:Fields>
+    <urn:AdvancedFields>
+        <urn:Field name="Connection Timeout">30</urn:Field>
+        <urn:Field name="Retry Attempt">2</urn:Field>
+        <urn:Field name="Retry Delay">2</urn:Field>
+        <urn:Field name="Enable SMTP Debugging Messages">false</urn:Field>
+    </urn:AdvancedFields>
+    <urn:Tables/>
+</urn:PluginConfiguration>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:config xmlns:con="http://www.sourceid.org/2004/05/config">
+    <con:map name="IdpAuthnAdapterInstances">
+        <con:item name="Google">com.pingidentity.adapter.idp.google.GoogleAuthenticationAdapter</con:item>
+        <con:item name="HTMLFormSimplePCV">com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter</con:item>
+        <con:item name="PingOneVerify">com.pingidentity.adapters.pingone.verify.PingOneVerifyAdapter</con:item>
+        <con:item name="IDFirst">com.pingidentity.adapters.identifierfirst.idp.IdentifierFirstAdapter</con:item>
+        <con:item name="ciamMFA">com.pingidentity.adapters.pingone.mfa.PingOneMfaIdpAdapter</con:item>
+        <con:item name="HTMLForm">com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter</con:item>
+        <con:item name="ciamHTMLForm">com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter</con:item>
+        <con:item name="PingOneRisk">com.pingidentity.adapters.pingone.risk.PingOneRiskManagementIdpAdapter</con:item>
+        <con:item name="Facebook">com.pingidentity.adapters.idp.facebook.FacebookAuthenticationAdapter</con:item>
+        <con:item name="verifyHTMLForm">com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter</con:item>
+    </con:map>
+</con:config>

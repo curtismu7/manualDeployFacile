@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<authnSessionPolicies>
+    <applicationPolicy idleTimeoutMins="60" maxTimeoutMins="480"/>
+    <globalPolicy enableSessions="true" hashUniqueUserKeyAttribute="false" idleTimeoutDisplayUnit="MINUTES" idleTimeoutMins="60" maxTimeoutDisplayUnit="MINUTES" maxTimeoutMins="480" persistentSessions="true"/>
+    <sourcePolicies>
+        <policy authnContextSensitive="false" authnSourceId="ciamMFA" authnSourceType="ADAPTER" enableSessions="false" id="ciamMFASessionOverride" persistent="false" timeoutDisplayUnit="MINUTES"/>
+        <policy authnContextSensitive="false" authnSourceId="PingOneRisk" authnSourceType="ADAPTER" enableSessions="false" id="PingOneRisk" persistent="false" timeoutDisplayUnit="MINUTES"/>
+        <policy authnContextSensitive="false" authnSourceId="PingOneVerify" authnSourceType="ADAPTER" enableSessions="false" id="PingOneVerify" persistent="false" timeoutDisplayUnit="MINUTES"/>
+    </sourcePolicies>
+</authnSessionPolicies>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:CibaServerPolicy defaultRequestHandlingPolicyId="SampleCIBAPolicy" xmlns:urn="urn:pingidentity.com:pf:openid:ciba">
+    <urn:CibaRequestHandlingPolicy id="SampleCIBAPolicy" name="Sample CIBA Policy" pluginId="SampleCIBA" transactionLifeInSeconds="120" allowUnsignedLoginHintToken="false" requireHintToken="false" userCodePcvId="">
+        <urn:EnhanceRequestHintContractMapping>
+            <urn1:AttributeMap Name="IDENTITY_HINT_SUBJECT" Type="Request" Value="IDENTITY_HINT_SUBJECT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        </urn:EnhanceRequestHintContractMapping>
+        <urn:HintContractToOOBAuthPluginMapping>
+            <urn1:AttributeMap Name="subject" Type="Request" Value="IDENTITY_HINT_SUBJECT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:AttributeMap Name="USER_KEY" Type="Request" Value="IDENTITY_HINT_SUBJECT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        </urn:HintContractToOOBAuthPluginMapping>
+    </urn:CibaRequestHandlingPolicy>
+    <urn:CibaRequestHandlingPolicy id="OAuthPlayground" name="OAuthPlayground" pluginId="SampleCIBA" transactionLifeInSeconds="120" allowUnsignedLoginHintToken="true" requireHintToken="false" userCodePcvId="">
+        <urn:EnhanceRequestHintContractMapping>
+            <urn1:AttributeMap Name="IDENTITY_HINT_SUBJECT" Type="Request" Value="IDENTITY_HINT_SUBJECT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        </urn:EnhanceRequestHintContractMapping>
+        <urn:HintContractToOOBAuthPluginMapping>
+            <urn1:AttributeMap Name="subject" Type="Request" Value="IDENTITY_HINT_SUBJECT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:AttributeMap Name="USER_KEY" Type="Request" Value="IDENTITY_HINT_SUBJECT" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        </urn:HintContractToOOBAuthPluginMapping>
+    </urn:CibaRequestHandlingPolicy>
+</urn:CibaServerPolicy>

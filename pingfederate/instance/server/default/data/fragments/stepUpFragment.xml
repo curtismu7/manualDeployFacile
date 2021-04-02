@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PolicyFragment id="stepUpFragment" name="Step_Up" inputContractId="FragmentSubject" outputContractId="samplePolicyContract" lastModifiedMillis="1617197721106" xmlns:urn="urn:pingidentity.com:pf:policy:fragment">
+    <urn:policy context="">
+        <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <urn:AuthnSourceKey type="ADAPTER">ciamMFA</urn:AuthnSourceKey>
+            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+            <urn:InputIdMapping Type="Inputs" AttributeSourceId="Inputs" Value="subject"/>
+            <urn:userIdAuthenticated>true</urn:userIdAuthenticated>
+        </urn:AstAction>
+        <urn1:AstChild context="Fail" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </urn1:AstChild>
+        <urn1:AstChild context="Success" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction lipId="regIdentityProfile" xsi:type="urn:LocalIdentityMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:InboundAttributeMapping>
+                    <urn2:AttributeMap Name="pf.local.identity.unique.id" Type="Adapter" AttributeSourceId="ciamMFA" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:InboundAttributeMapping>
+                <urn:OutboundAttributeMapping>
+                    <urn2:AttributeMap Name="firstName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="lastName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="ImmutableID" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="ImmutableID" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="mail" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="subject" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="step_up" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:OutboundAttributeMapping>
+            </urn:AstAction>
+        </urn1:AstChild>
+    </urn:policy>
+    <urn:description>Used when a decision to perform Step-Up Authentication is made</urn:description>
+</urn:PolicyFragment>

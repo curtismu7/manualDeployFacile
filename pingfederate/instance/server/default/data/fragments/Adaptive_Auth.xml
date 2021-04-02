@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PolicyFragment id="Adaptive_Auth" name="Adaptive_Auth" inputContractId="FragmentSubject" outputContractId="samplePolicyContract" lastModifiedMillis="1617197725515" xmlns:urn="urn:pingidentity.com:pf:policy:fragment">
+    <urn:policy context="">
+        <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <urn:AuthnSourceKey type="ADAPTER">PingOneRisk</urn:AuthnSourceKey>
+            <urn:fallbackToSuccess>false</urn:fallbackToSuccess>
+            <urn:attributeRule>
+                <urn:IncomingAttr>riskLevel</urn:IncomingAttr>
+                <urn:Operand>EQUALS_CASE_INSENSITIVE</urn:Operand>
+                <urn:ExpectedValue>low</urn:ExpectedValue>
+                <urn:Result>Low</urn:Result>
+            </urn:attributeRule>
+            <urn:attributeRule>
+                <urn:IncomingAttr>riskLevel</urn:IncomingAttr>
+                <urn:Operand>EQUALS_CASE_INSENSITIVE</urn:Operand>
+                <urn:ExpectedValue>medium</urn:ExpectedValue>
+                <urn:Result>Medium</urn:Result>
+            </urn:attributeRule>
+            <urn:attributeRule>
+                <urn:IncomingAttr>riskLevel</urn:IncomingAttr>
+                <urn:Operand>EQUALS_CASE_INSENSITIVE</urn:Operand>
+                <urn:ExpectedValue>high</urn:ExpectedValue>
+                <urn:Result>High</urn:Result>
+            </urn:attributeRule>
+            <urn:InputIdMapping Type="Inputs" AttributeSourceId="Inputs" Value="subject"/>
+            <urn:userIdAuthenticated>true</urn:userIdAuthenticated>
+        </urn:AstAction>
+        <urn1:AstChild context="Fail" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </urn1:AstChild>
+        <urn1:AstChild context="Low" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction lipId="regIdentityProfile" xsi:type="urn:LocalIdentityMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:InboundAttributeMapping>
+                    <urn2:AttributeMap Name="pf.local.identity.unique.id" Type="Inputs" AttributeSourceId="inputs" Value="subject" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:InboundAttributeMapping>
+                <urn:OutboundAttributeMapping>
+                    <urn2:AttributeMap Name="firstName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="lastName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="ImmutableID" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="ImmutableID" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="mail" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="subject" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="risk-low" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:OutboundAttributeMapping>
+            </urn:AstAction>
+        </urn1:AstChild>
+        <urn1:AstChild context="Medium" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction fragmentId="stepUpFragment" xsi:type="urn:FragmentActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:fallbackToSuccess>false</urn:fallbackToSuccess>
+                <urn:AttributeMapping>
+                    <urn2:AttributeMap Name="subject" Type="Inputs" AttributeSourceId="inputs" Value="subject" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:AttributeMapping>
+            </urn:AstAction>
+            <urn1:AstChild context="Fail">
+                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </urn1:AstChild>
+            <urn1:AstChild context="Success">
+                <urn:AstAction lipId="regIdentityProfile" xsi:type="urn:LocalIdentityMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <urn:InboundAttributeMapping>
+                        <urn2:AttributeMap Name="pf.local.identity.unique.id" Type="Inputs" AttributeSourceId="inputs" Value="subject" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    </urn:InboundAttributeMapping>
+                    <urn:OutboundAttributeMapping>
+                        <urn2:AttributeMap Name="firstName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="lastName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="ImmutableID" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="ImmutableID" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="mail" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="subject" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="risk-med" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    </urn:OutboundAttributeMapping>
+                </urn:AstAction>
+            </urn1:AstChild>
+        </urn1:AstChild>
+        <urn1:AstChild context="High" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </urn1:AstChild>
+    </urn:policy>
+    <urn:description>Uses Device &amp; User Behavior to determine if additional authentication is required</urn:description>
+</urn:PolicyFragment>

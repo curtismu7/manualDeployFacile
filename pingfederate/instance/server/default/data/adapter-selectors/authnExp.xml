@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PluginConfiguration isInheritExtendedContractAttributes="false" name="Sample - AuthN Experiences" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+    <urn:Fields>
+        <urn:Field name="Extended Property">authNexp</urn:Field>
+        <urn:Field name="Case-Sensitive Matching">true</urn:Field>
+        <urn:Field name="Enable 'No Match' Result Value">false</urn:Field>
+    </urn:Fields>
+    <urn:AdvancedFields/>
+    <urn:Tables/>
+    <urn:ExtendedContractAttributes>
+        <urn:AttributeName>Single_Factor</urn:AttributeName>
+        <urn:AttributeName>Multi_Factor</urn:AttributeName>
+        <urn:AttributeName>Passwordless</urn:AttributeName>
+        <urn:AttributeName>Internal</urn:AttributeName>
+        <urn:AttributeName>Verify</urn:AttributeName>
+    </urn:ExtendedContractAttributes>
+</urn:PluginConfiguration>

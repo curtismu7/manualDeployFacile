@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:config xmlns:con="http://www.sourceid.org/2004/05/config">
+    <con:map name="Sample-SAML"/>
+    <con:map name="Sample-Widget"/>
+    <con:map name="Sample-Passwordless"/>
+    <con:map name="Sample-Verify"/>
+    <con:map name="https://cmuir-facile-deploy-perm.ping-devops.com"/>
+</con:config>

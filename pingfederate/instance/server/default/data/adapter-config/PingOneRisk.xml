@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:AdapterConfiguration authnCtxClassRef="" isInheritAttributeSettings="false" isInheritAttributeMapping="false" maskOgnlValues="false" uniqueUserKeyField="pf_none" isInheritExtendedContractAttributes="false" name="PingOne Risk" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+    <urn:Fields>
+        <urn:Field name="PingOne Environment">PingOneConnection|94742a12-dba9-4911-a257-f6aa8985a73d</urn:Field>
+        <urn:Field name="Risk Policy ID"/>
+        <urn:Field name="Include Device Profile">true</urn:Field>
+        <urn:Field name="Device Profiling Method">Captured by this adapter</urn:Field>
+        <urn:Field name="Device Profiling Timeout">5000</urn:Field>
+        <urn:Field name="Cookie Name Prefix">pingone.risk.device.profile</urn:Field>
+        <urn:Field name="Failure Mode">Continue with fallback policy decision</urn:Field>
+        <urn:Field name="Fallback Policy Decision Value">MEDIUM</urn:Field>
+        <urn:Field name="API Request Timeout">2000</urn:Field>
+        <urn:Field name="Proxy Settings">System Defaults</urn:Field>
+        <urn:Field name="Custom Proxy Host"/>
+        <urn:Field name="Custom Proxy Port"/>
+    </urn:Fields>
+    <urn:AdvancedFields>
+        <urn:Field name="Include Device Profile">true</urn:Field>
+        <urn:Field name="Device Profiling Method">Captured by this adapter</urn:Field>
+        <urn:Field name="Device Profiling Timeout">5000</urn:Field>
+        <urn:Field name="Cookie Name Prefix">pingone.risk.device.profile</urn:Field>
+        <urn:Field name="Failure Mode">Continue with fallback policy decision</urn:Field>
+        <urn:Field name="Fallback Policy Decision Value">MEDIUM</urn:Field>
+        <urn:Field name="API Request Timeout">2000</urn:Field>
+        <urn:Field name="Proxy Settings">System Defaults</urn:Field>
+        <urn:Field name="Custom Proxy Host"/>
+        <urn:Field name="Custom Proxy Port"/>
+    </urn:AdvancedFields>
+    <urn:Tables>
+        <urn:Table name="Additional User Attributes (optional)"/>
+        <urn:Table name="PingOne Risk API Response Mappings (optional)"/>
+    </urn:Tables>
+    <urn:ExtendedContractAttributes/>
+    <urn:UniqueKeyField>riskValue</urn:UniqueKeyField>
+    <urn:AttributeMapping>
+        <urn1:AttributeMap Name="riskLevel" Type="Adapter" Value="riskLevel" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:AttributeMap Name="riskValue" Type="Adapter" Value="riskValue" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+        <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+    </urn:AttributeMapping>
+</urn:AdapterConfiguration>

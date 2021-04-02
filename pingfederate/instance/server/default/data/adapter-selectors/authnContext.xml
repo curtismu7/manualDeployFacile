@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PluginConfiguration isInheritExtendedContractAttributes="false" name="AuthN Context" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+    <urn:Fields>
+        <urn:Field name="Add or Update AuthN Context Attribute">true</urn:Field>
+        <urn:Field name="Enable 'No Match' Result Value">false</urn:Field>
+        <urn:Field name="Enable 'Not in Request' Result Value">false</urn:Field>
+    </urn:Fields>
+    <urn:AdvancedFields/>
+    <urn:Tables/>
+    <urn:ExtendedContractAttributes>
+        <urn:AttributeName>Single_Factor</urn:AttributeName>
+        <urn:AttributeName>Multi_Factor</urn:AttributeName>
+        <urn:AttributeName>Passwordless</urn:AttributeName>
+        <urn:AttributeName>Internal</urn:AttributeName>
+        <urn:AttributeName>Verify</urn:AttributeName>
+    </urn:ExtendedContractAttributes>
+</urn:PluginConfiguration>

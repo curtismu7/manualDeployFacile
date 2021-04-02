@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:config xmlns:con="http://www.sourceid.org/2004/05/config">
+    <con:item name="lastUpdated">1617217482497</con:item>
+    <con:map name="scope-descriptions">
+        <con:item name="address">Used to access your postal address</con:item>
+        <con:item name="phone">Used to access your phone number</con:item>
+        <con:item name="openid">Logon to your account</con:item>
+        <con:item name="profile">Used to access your profile</con:item>
+        <con:item name="email">Used to access your email address</con:item>
+    </con:map>
+    <con:list name="dynamic-common-scopes"/>
+    <con:map name="scope-group-descriptions"/>
+    <con:map name="scope-group-mappings"/>
+    <con:map name="exclusive-scope-descriptions">
+        <con:item name="urn:pingidentity:consent-unpriv">Used to perform Unprivileged ConsentAPI calls</con:item>
+        <con:item name="urn:pingidentity:directory-delegated-admin">Used to enable Delegator</con:item>
+        <con:item name="urn:pingidentity:scim">Used to authenticate to the PD SCIMv2 API</con:item>
+        <con:item name="urn:pingidentity:consent-priv">Used to perform Privileged ConsentAPI calls</con:item>
+        <con:item name="urn:pingidentity:directory">Used to authenticate to the PD Directory API</con:item>
+    </con:map>
+    <con:list name="dynamic-exclusive-scopes"/>
+    <con:map name="exclusive-scope-group-descriptions"/>
+    <con:map name="exclusive-scope-group-mappings"/>
+    <con:item name="default-scope-description">default</con:item>
+</con:config>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<authnApiConfig>
+    <apiApplications>
+        <application description="When applied to an Authentication Policy, this Application URL will be sent to the requesting browser to perform the presentation of that User Journey. A flowId will be sent to the AuthN API Explorer." id="sampleAuthNAPIAppExplorer" name="Sample AuthN API Application - API Explorer" url="https://cmuir-facile-deploy-perm.ping-devops.com/pf-ws/authn/explorer"/>
+        <application description="When applied to an Authentiction Policy, this Application URL will be sent to the requesting browser to perform the presentation of that User Journey. A flowId will be sent to an app running the AuthN API Widget" id="sampleAuthNAPIApp" name="Sample AuthN API Application - Widget" url="https://widget.pingidentity.cloud/cmuir-facile-deploy-perm/logon"/>
+    </apiApplications>
+    <apiSettings apiEnabled="true" enableApiDescriptions="true"/>
+</authnApiConfig>

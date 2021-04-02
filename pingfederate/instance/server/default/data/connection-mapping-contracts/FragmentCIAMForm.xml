@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c2c:c2cContract id="FragmentCIAMForm" name="Fragment - CIAM Form" xmlns:c2c="http://pingidentity.com/2014/10/c2cContracts">
+    <c2c:extendedAttributes>
+        <c2c:attr name="entryUUID"/>
+        <c2c:attr name="uid"/>
+        <c2c:attr name="mail"/>
+    </c2c:extendedAttributes>
+</c2c:c2cContract>

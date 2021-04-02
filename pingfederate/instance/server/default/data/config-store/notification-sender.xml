@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:config xmlns:con="http://www.sourceid.org/2004/05/config">
+    <con:map name="notification-sender">
+        <con:item name="smtp">com.pingidentity.email.SmtpNotificationPlugin</con:item>
+    </con:map>
+    <con:item name="notification-sender-default">smtp</con:item>
+</con:config>

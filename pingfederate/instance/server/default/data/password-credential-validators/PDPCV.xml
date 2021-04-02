@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PluginConfiguration isInheritExtendedContractAttributes="false" name="PD PCV" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+    <urn:Fields>
+        <urn:Field name="LDAP Datastore">LDAP-PingDirectory</urn:Field>
+        <urn:Field name="Search Base">dc=sampleCiam.com</urn:Field>
+        <urn:Field name="Search Filter">(|(uid=${username})(mail=${username}))</urn:Field>
+        <urn:Field name="Scope of Search">Subtree</urn:Field>
+        <urn:Field name="Case-Sensitive Matching">true</urn:Field>
+        <urn:Field name="Display Name Attribute">displayName</urn:Field>
+        <urn:Field name="Mail Attribute">mail</urn:Field>
+        <urn:Field name="SMS Attribute"/>
+        <urn:Field name="PingID Username Attribute">uid</urn:Field>
+        <urn:Field name="Mail Search Filter"/>
+        <urn:Field name="Username Attribute">uid</urn:Field>
+        <urn:Field name="Mail Verified Attribute"/>
+        <urn:Field name="Trim Username Spaces For Search">false</urn:Field>
+        <urn:Field name="Enable PingDirectory Detailed Password Policy Requirement Messaging">true</urn:Field>
+    </urn:Fields>
+    <urn:AdvancedFields>
+        <urn:Field name="Display Name Attribute">displayName</urn:Field>
+        <urn:Field name="Mail Attribute">mail</urn:Field>
+        <urn:Field name="SMS Attribute"/>
+        <urn:Field name="PingID Username Attribute">uid</urn:Field>
+        <urn:Field name="Mail Search Filter"/>
+        <urn:Field name="Username Attribute">uid</urn:Field>
+        <urn:Field name="Mail Verified Attribute"/>
+        <urn:Field name="Trim Username Spaces For Search">false</urn:Field>
+        <urn:Field name="Enable PingDirectory Detailed Password Policy Requirement Messaging">true</urn:Field>
+    </urn:AdvancedFields>
+    <urn:Tables>
+        <urn:Table name="Authentication Error Overrides"/>
+    </urn:Tables>
+    <urn:ExtendedContractAttributes>
+        <urn:AttributeName>entryUUID</urn:AttributeName>
+        <urn:AttributeName>uid</urn:AttributeName>
+        <urn:AttributeName>sn</urn:AttributeName>
+    </urn:ExtendedContractAttributes>
+</urn:PluginConfiguration>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PolicyFragment id="FirstFactor" name="First_Factor" inputContractId="FragmentSubject" outputContractId="samplePolicyContract" lastModifiedMillis="1617197812301" xmlns:urn="urn:pingidentity.com:pf:policy:fragment">
+    <urn:policy context="">
+        <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <urn:AuthnSourceKey type="ADAPTER">ciamHTMLForm</urn:AuthnSourceKey>
+            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+            <urn:attributeRule>
+                <urn:IncomingAttr>policy.action</urn:IncomingAttr>
+                <urn:Operand>EQUALS_CASE_INSENSITIVE</urn:Operand>
+                <urn:ExpectedValue>identity.registration</urn:ExpectedValue>
+                <urn:Result>Register</urn:Result>
+            </urn:attributeRule>
+            <urn:attributeRule>
+                <urn:IncomingAttr>policy.action</urn:IncomingAttr>
+                <urn:Operand>EQUALS_CASE_INSENSITIVE</urn:Operand>
+                <urn:ExpectedValue>facebook</urn:ExpectedValue>
+                <urn:Result>Facebook</urn:Result>
+            </urn:attributeRule>
+            <urn:attributeRule>
+                <urn:IncomingAttr>policy.action</urn:IncomingAttr>
+                <urn:Operand>EQUALS_CASE_INSENSITIVE</urn:Operand>
+                <urn:ExpectedValue>google</urn:ExpectedValue>
+                <urn:Result>Google</urn:Result>
+            </urn:attributeRule>
+            <urn:userIdAuthenticated>false</urn:userIdAuthenticated>
+        </urn:AstAction>
+        <urn1:AstChild context="Fail" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </urn1:AstChild>
+        <urn1:AstChild context="Register" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction lipId="regIdentityProfile" xsi:type="urn:LocalIdentityMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:InboundAttributeMapping>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:InboundAttributeMapping>
+                <urn:OutboundAttributeMapping>
+                    <urn2:AttributeMap Name="firstName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="lastName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="ImmutableID" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="ImmutableID" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="mail" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="subject" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="registered" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:OutboundAttributeMapping>
+            </urn:AstAction>
+        </urn1:AstChild>
+        <urn1:AstChild context="Facebook" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:AuthnSourceKey type="ADAPTER">Facebook</urn:AuthnSourceKey>
+                <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                <urn:userIdAuthenticated>false</urn:userIdAuthenticated>
+            </urn:AstAction>
+            <urn1:AstChild context="Fail">
+                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </urn1:AstChild>
+            <urn1:AstChild context="Success">
+                <urn:AstAction lipId="regIdentityProfile" xsi:type="urn:LocalIdentityMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <urn:InboundAttributeMapping>
+                        <urn2:AttributeMap Name="firstName" Type="Adapter" AttributeSourceId="Facebook" Value="first_name" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="lastName" Type="Adapter" AttributeSourceId="Facebook" Value="last_name" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="pf.local.identity.unique.id" Type="Adapter" AttributeSourceId="Facebook" Value="id" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="fullName" Type="Adapter" AttributeSourceId="Facebook" Value="name_format" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    </urn:InboundAttributeMapping>
+                    <urn:OutboundAttributeMapping>
+                        <urn2:AttributeMap Name="firstName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="lastName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="ImmutableID" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="ImmutableID" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="mail" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="subject" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="Facebook" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    </urn:OutboundAttributeMapping>
+                </urn:AstAction>
+            </urn1:AstChild>
+        </urn1:AstChild>
+        <urn1:AstChild context="Google" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:AuthnSourceKey type="ADAPTER">Google</urn:AuthnSourceKey>
+                <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                <urn:userIdAuthenticated>false</urn:userIdAuthenticated>
+            </urn:AstAction>
+            <urn1:AstChild context="Fail">
+                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </urn1:AstChild>
+            <urn1:AstChild context="Success">
+                <urn:AstAction lipId="regIdentityProfile" xsi:type="urn:LocalIdentityMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <urn:InboundAttributeMapping>
+                        <urn2:AttributeMap Name="firstName" Type="Adapter" AttributeSourceId="Google" Value="given_name" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="lastName" Type="Adapter" AttributeSourceId="Google" Value="family_name" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="pf.local.identity.unique.id" Type="Adapter" AttributeSourceId="Google" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="fullName" Type="Adapter" AttributeSourceId="Google" Value="name" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="email" Type="Adapter" AttributeSourceId="Google" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    </urn:InboundAttributeMapping>
+                    <urn:OutboundAttributeMapping>
+                        <urn2:AttributeMap Name="firstName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="lastName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="ImmutableID" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="ImmutableID" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="mail" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="subject" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="Facebook" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    </urn:OutboundAttributeMapping>
+                </urn:AstAction>
+            </urn1:AstChild>
+        </urn1:AstChild>
+        <urn1:AstChild context="Success" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction lipId="regIdentityProfile" xsi:type="urn:LocalIdentityMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:InboundAttributeMapping>
+                    <urn2:AttributeMap Name="pf.local.identity.unique.id" Type="Adapter" AttributeSourceId="ciamHTMLForm" Value="uid" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:InboundAttributeMapping>
+                <urn:OutboundAttributeMapping>
+                    <urn2:AttributeMap Name="firstName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="lastName" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="ImmutableID" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="ImmutableID" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="mail" Type="Local Account" AttributeSourceId="regIdentityProfile" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="ciamHTMLForm" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="single_factor" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:OutboundAttributeMapping>
+            </urn:AstAction>
+        </urn1:AstChild>
+    </urn:policy>
+    <urn:description>Used for Customer First Factor</urn:description>
+</urn:PolicyFragment>

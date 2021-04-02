@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PolicyFragment id="verifyAuthN" name="Verify_AuthN" inputContractId="FragmentCIAMForm" outputContractId="samplePolicyContract" lastModifiedMillis="1617197763397" xmlns:urn="urn:pingidentity.com:pf:policy:fragment">
+    <urn:policy context="">
+        <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <urn:AuthnSourceKey type="ADAPTER">verifyHTMLForm</urn:AuthnSourceKey>
+            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+            <urn:attributeRule>
+                <urn:IncomingAttr>policy.action</urn:IncomingAttr>
+                <urn:Operand>EQUALS</urn:Operand>
+                <urn:ExpectedValue>identity.registration</urn:ExpectedValue>
+                <urn:Result>Register</urn:Result>
+            </urn:attributeRule>
+            <urn:userIdAuthenticated>false</urn:userIdAuthenticated>
+        </urn:AstAction>
+        <urn1:AstChild context="Fail" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </urn1:AstChild>
+        <urn1:AstChild context="Register" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction lipId="verifyIdentityProfile" xsi:type="urn:LocalIdentityMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:InboundAttributeMapping>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:InboundAttributeMapping>
+                <urn:OutboundAttributeMapping>
+                    <urn2:AttributeMap Name="firstName" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="lastName" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="ImmutableID" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="ImmutableID" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="mail" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="subject" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="verified_registration" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:OutboundAttributeMapping>
+            </urn:AstAction>
+        </urn1:AstChild>
+        <urn1:AstChild context="Success" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:AuthnSourceKey type="ADAPTER">PingOneVerify</urn:AuthnSourceKey>
+                <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                <urn:InputIdMapping Type="Adapter" AttributeSourceId="verifyHTMLForm" Value="uid"/>
+                <urn:userIdAuthenticated>true</urn:userIdAuthenticated>
+            </urn:AstAction>
+            <urn1:AstChild context="Fail">
+                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            </urn1:AstChild>
+            <urn1:AstChild context="Success">
+                <urn:AstAction lipId="verifyIdentityProfile" xsi:type="urn:LocalIdentityMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <urn:InboundAttributeMapping>
+                        <urn2:AttributeMap Name="pf.local.identity.unique.id" Type="Adapter" AttributeSourceId="verifyHTMLForm" Value="uid" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    </urn:InboundAttributeMapping>
+                    <urn:OutboundAttributeMapping>
+                        <urn2:AttributeMap Name="firstName" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="lastName" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="ImmutableID" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="ImmutableID" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="mail" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="email" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="subject" Type="Local Account" AttributeSourceId="verifyIdentityProfile" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:AttributeMap Name="SAML_AUTHN_CTX" Type="Text" Value="verified_authentication" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    </urn:OutboundAttributeMapping>
+                </urn:AstAction>
+            </urn1:AstChild>
+        </urn1:AstChild>
+    </urn:policy>
+    <urn:description>HTML Form + Registration integration with PingOne Verify</urn:description>
+</urn:PolicyFragment>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PolicyFragment id="verifyReg" name="Verify_Register" inputContractId="fragmentVerifyReg" outputContractId="fragmentVerifyReg" lastModifiedMillis="1617197762989" xmlns:urn="urn:pingidentity.com:pf:policy:fragment">
+    <urn:policy context="">
+        <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <urn:AuthnSourceKey type="ADAPTER">PingOneVerify</urn:AuthnSourceKey>
+            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+            <urn:InputIdMapping Type="Inputs" AttributeSourceId="Inputs" Value="username"/>
+            <urn:userIdAuthenticated>true</urn:userIdAuthenticated>
+        </urn:AstAction>
+        <urn1:AstChild context="Fail" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </urn1:AstChild>
+        <urn1:AstChild context="Success" xmlns:urn1="urn:pingidentity.com:pf:authn-selection">
+            <urn:AstAction apcId="fragmentVerifyReg" xsi:type="urn:ApcMappingActionType" xmlns:urn="urn:pingidentity.com:pf:authn-selection" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <urn:AttributeMapping>
+                    <urn2:AttributeMap Name="firstName" Type="Adapter" AttributeSourceId="PingOneVerify" Value="firstName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="lastName" Type="Adapter" AttributeSourceId="PingOneVerify" Value="lastName" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="PingOneVerify" Value="subject" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="fullName" Type="Expression" Value="#this.get(&quot;ad.PingOneVerify.firstName&quot;) + &quot; &quot; + #this.get(&quot;ad.PingOneVerify.lastName&quot;)" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:AttributeMap Name="username" Type="Inputs" AttributeSourceId="inputs" Value="username" xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    <urn2:TokenAuthorizationIssuanceCriteria xmlns:urn2="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                </urn:AttributeMapping>
+            </urn:AstAction>
+        </urn1:AstChild>
+    </urn:policy>
+    <urn:description>Used in the Verify_AuthN Registration Workflow</urn:description>
+</urn:PolicyFragment>

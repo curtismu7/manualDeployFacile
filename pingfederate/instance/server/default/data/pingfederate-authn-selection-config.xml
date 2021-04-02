@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:AuthnSelectionConfig lastModifiedMillis="1617200027762" enableAuthnSelection="true" enableSpAuthnSelection="false" failIfNoSelection="false" xmlns:urn="urn:pingidentity.com:pf:authn-selection">
+    <urn:AuthnSelectionTrees>
+        <urn:AuthnSelectionTree treeName="Sample AuthN Context" disabled="false" authnApiApp="">
+            <urn:AstRoot context="">
+                <urn:AstAction authnSelectorId="authnContext" xsi:type="urn:AuthnSelectorActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <urn:AstChild context="Internal">
+                    <urn:AstAction fragmentId="InternalAuthN" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                </urn:AstChild>
+                <urn:AstChild context="Multi_Factor">
+                    <urn:AstAction fragmentId="FirstFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction fragmentId="SecondFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                            <urn:AttributeMapping>
+                                <urn1:AttributeMap Name="subject" Type="Fragment" AttributeSourceId="FirstFactor" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            </urn:AttributeMapping>
+                        </urn:AstAction>
+                        <urn:AstChild context="Fail">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                        <urn:AstChild context="Success">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                    </urn:AstChild>
+                </urn:AstChild>
+                <urn:AstChild context="Passwordless">
+                    <urn:AstAction fragmentId="Identify_First" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction fragmentId="stepUpFragment" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                            <urn:AttributeMapping>
+                                <urn1:AttributeMap Name="subject" Type="Fragment" AttributeSourceId="Identify_First" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            </urn:AttributeMapping>
+                        </urn:AstAction>
+                        <urn:AstChild context="Fail">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                        <urn:AstChild context="Success">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                    </urn:AstChild>
+                </urn:AstChild>
+                <urn:AstChild context="Single_Factor">
+                    <urn:AstAction fragmentId="FirstFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                </urn:AstChild>
+                <urn:AstChild context="Verify">
+                    <urn:AstAction fragmentId="verifyAuthN" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="entryUUID" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:AttributeMap Name="uid" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:AttributeMap Name="mail" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                </urn:AstChild>
+            </urn:AstRoot>
+            <urn:treeDescription>Mirrors the Sample AuthN Experiences with the incoming Authentication Context.
+Set in the token request (for example - OIDC `acr_values` parameter)</urn:treeDescription>
+        </urn:AuthnSelectionTree>
+        <urn:AuthnSelectionTree treeName="Sample AuthN API" disabled="false" authnApiApp="sampleAuthNAPIApp">
+            <urn:AstRoot context="">
+                <urn:AstAction authnSelectorId="useAuthApi" xsi:type="urn:AuthnSelectorActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <urn:AstChild context="Y">
+                    <urn:AstAction authnSelectorId="authnExp" xsi:type="urn:AuthnSelectorActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    <urn:AstChild context="Internal">
+                        <urn:AstAction fragmentId="InternalAuthN" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                            <urn:AttributeMapping>
+                                <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            </urn:AttributeMapping>
+                        </urn:AstAction>
+                        <urn:AstChild context="Fail">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                        <urn:AstChild context="Success">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                    </urn:AstChild>
+                    <urn:AstChild context="Multi_Factor">
+                        <urn:AstAction fragmentId="FirstFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                            <urn:AttributeMapping>
+                                <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            </urn:AttributeMapping>
+                        </urn:AstAction>
+                        <urn:AstChild context="Fail">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                        <urn:AstChild context="Success">
+                            <urn:AstAction fragmentId="SecondFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                                <urn:AttributeMapping>
+                                    <urn1:AttributeMap Name="subject" Type="Fragment" AttributeSourceId="FirstFactor" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                    <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                </urn:AttributeMapping>
+                            </urn:AstAction>
+                            <urn:AstChild context="Fail">
+                                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            </urn:AstChild>
+                            <urn:AstChild context="Success">
+                                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            </urn:AstChild>
+                        </urn:AstChild>
+                    </urn:AstChild>
+                    <urn:AstChild context="Passwordless">
+                        <urn:AstAction fragmentId="Identify_First" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                            <urn:AttributeMapping>
+                                <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            </urn:AttributeMapping>
+                        </urn:AstAction>
+                        <urn:AstChild context="Fail">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                        <urn:AstChild context="Success">
+                            <urn:AstAction fragmentId="stepUpFragment" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                                <urn:AttributeMapping>
+                                    <urn1:AttributeMap Name="subject" Type="Fragment" AttributeSourceId="Identify_First" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                    <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                </urn:AttributeMapping>
+                            </urn:AstAction>
+                            <urn:AstChild context="Fail">
+                                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            </urn:AstChild>
+                            <urn:AstChild context="Success">
+                                <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                            </urn:AstChild>
+                        </urn:AstChild>
+                    </urn:AstChild>
+                    <urn:AstChild context="Single_Factor">
+                        <urn:AstAction fragmentId="FirstFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                            <urn:AttributeMapping>
+                                <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            </urn:AttributeMapping>
+                        </urn:AstAction>
+                        <urn:AstChild context="Fail">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                        <urn:AstChild context="Success">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                    </urn:AstChild>
+                    <urn:AstChild context="Verify">
+                        <urn:AstAction fragmentId="verifyAuthN" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                            <urn:AttributeMapping>
+                                <urn1:AttributeMap Name="entryUUID" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:AttributeMap Name="uid" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:AttributeMap Name="mail" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            </urn:AttributeMapping>
+                        </urn:AstAction>
+                        <urn:AstChild context="Fail">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                        <urn:AstChild context="Success">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                    </urn:AstChild>
+                </urn:AstChild>
+                <urn:AstChild context="No Match">
+                    <urn:AstAction noOpType="CONTINUE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </urn:AstChild>
+            </urn:AstRoot>
+            <urn:treeDescription>Mirrors the Sample AuthN Experiences with the Authentication API.
+Set the `useAuthnAPI` Extended Property to "Y"</urn:treeDescription>
+        </urn:AuthnSelectionTree>
+        <urn:AuthnSelectionTree treeName="Sample Authentication Experiences" disabled="false" authnApiApp="">
+            <urn:AstRoot context="">
+                <urn:AstAction authnSelectorId="authnExp" xsi:type="urn:AuthnSelectorActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                <urn:AstChild context="Internal">
+                    <urn:AstAction fragmentId="InternalAuthN" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                </urn:AstChild>
+                <urn:AstChild context="Multi_Factor">
+                    <urn:AstAction fragmentId="FirstFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction fragmentId="SecondFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                            <urn:AttributeMapping>
+                                <urn1:AttributeMap Name="subject" Type="Fragment" AttributeSourceId="FirstFactor" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            </urn:AttributeMapping>
+                        </urn:AstAction>
+                        <urn:AstChild context="Fail">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                        <urn:AstChild context="Success">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                    </urn:AstChild>
+                </urn:AstChild>
+                <urn:AstChild context="Passwordless">
+                    <urn:AstAction fragmentId="Identify_First" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction fragmentId="stepUpFragment" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                            <urn:AttributeMapping>
+                                <urn1:AttributeMap Name="subject" Type="Fragment" AttributeSourceId="Identify_First" Value="subject" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                                <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            </urn:AttributeMapping>
+                        </urn:AstAction>
+                        <urn:AstChild context="Fail">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                        <urn:AstChild context="Success">
+                            <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                        </urn:AstChild>
+                    </urn:AstChild>
+                </urn:AstChild>
+                <urn:AstChild context="Single_Factor">
+                    <urn:AstAction fragmentId="FirstFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                </urn:AstChild>
+                <urn:AstChild context="Verify">
+                    <urn:AstAction fragmentId="verifyAuthN" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="entryUUID" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:AttributeMap Name="uid" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:AttributeMap Name="mail" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                    <urn:AstChild context="Fail">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                    <urn:AstChild context="Success">
+                        <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                    </urn:AstChild>
+                </urn:AstChild>
+            </urn:AstRoot>
+            <urn:treeDescription>This Sample Policy uses the Extended Properties Selector on the Application to allow easy switching between:
+* Single_Factor (First_Factor Fragment)
+* Multi_Factor (First_Factor Fragment --> Second_Factor Fragment)
+* Passwordless (Identity_First --> Step_Up)
+* Internal (Employee HTML Form)</urn:treeDescription>
+        </urn:AuthnSelectionTree>
+        <urn:AuthnSelectionTree treeName="Fallback Policy" disabled="false" authnApiApp="">
+            <urn:AstRoot context="">
+                <urn:AstAction fragmentId="FirstFactor" xsi:type="urn:FragmentActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                    <urn:AttributeMapping>
+                        <urn1:AttributeMap Name="subject" Type="No Mapping" Value="NO_MAPPING" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                    </urn:AttributeMapping>
+                </urn:AstAction>
+                <urn:AstChild context="Fail">
+                    <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </urn:AstChild>
+                <urn:AstChild context="Success">
+                    <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </urn:AstChild>
+            </urn:AstRoot>
+            <urn:treeDescription>Used to perform authentication if other Policies are not invoked</urn:treeDescription>
+        </urn:AuthnSelectionTree>
+        <urn:AuthnSelectionTree treeName="Forgot Password" disabled="false" authnApiApp="">
+            <urn:AstRoot context="">
+                <urn:AstAction xsi:type="urn:AuthnSourceActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                    <urn:AuthnSourceKey type="ADAPTER">ciamMFA</urn:AuthnSourceKey>
+                    <urn:fallbackToSuccess>true</urn:fallbackToSuccess>
+                    <urn:InputIdMapping Type="Context" Value="context.RequestedUser"/>
+                    <urn:userIdAuthenticated>false</urn:userIdAuthenticated>
+                </urn:AstAction>
+                <urn:AstChild context="Fail">
+                    <urn:AstAction noOpType="DONE" xsi:type="urn:NoOpActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+                </urn:AstChild>
+                <urn:AstChild context="Success">
+                    <urn:AstAction apcId="forgotPassword" xsi:type="urn:ApcMappingActionType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                        <urn:AttributeMapping>
+                            <urn1:AttributeMap Name="subject" Type="Adapter" AttributeSourceId="ciamMFA" Value="username" xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                            <urn1:TokenAuthorizationIssuanceCriteria xmlns:urn1="urn:sourceid.org:saml2:metadata-extension:v2"/>
+                        </urn:AttributeMapping>
+                    </urn:AstAction>
+                </urn:AstChild>
+            </urn:AstRoot>
+            <urn:treeDescription>Used in the Self-Service Password Reset flow</urn:treeDescription>
+        </urn:AuthnSelectionTree>
+    </urn:AuthnSelectionTrees>
+    <urn:DefaultAuthnSources/>
+</urn:AuthnSelectionConfig>

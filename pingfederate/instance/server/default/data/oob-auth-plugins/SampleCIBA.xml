@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:PluginConfiguration isInheritExtendedContractAttributes="false" name="Sample CIBA (PingOne MFA)" xmlns:urn="urn:sourceid.org:saml2:adapter:conf">
+    <urn:Fields>
+        <urn:Field name="PingOne Environment">PingOneConnection|94742a12-dba9-4911-a257-f6aa8985a73d</urn:Field>
+        <urn:Field name="Application Client ID">a28811f2-bcc9-4e09-94b1-71677b9fa66f</urn:Field>
+        <urn:Field name="Application Client Secret">eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiN0JPYzdOcWRTbCIsInZlcnNpb24iOiIxMC4yLjIuMCJ9..IY6QjNN6ps9_tRwY-AGZxA.vv17GXIMVzKl4uxe2wK7vq8GMN50BJF8K7r-Vc9XlSSNBfaKuhzeanpefzTEwvIGs2RQdMSJAziCDZMBAbYQ5_35l7rp5XRvzTg0U4oBzEU.7yK3mviP_ALYY9R-GoAQbA</urn:Field>
+        <urn:Field name="PingOne Authentication Policy">Standalone_MFA</urn:Field>
+        <urn:Field name="Test Username">user.0</urn:Field>
+        <urn:Field name="PingOne Template Name">transaction</urn:Field>
+        <urn:Field name="PingOne Template Variant"/>
+        <urn:Field name="Client Context">#*
+Define additional key/value pairs to be received at the mobile application.
+The following variables are available by default:
+
+$oobAuthRequestContext - Context for the out-of-band authentication/authorization request
+$languagePackMessages - The language-pack file configured for this authenticator
+$subject - The user's PingOne username or user ID.
+$JSONValue - A JSON utility class that can be used to escape text and convert objects to JSON.
+   Methods:
+       escape(String s) - Escape quotes, \, /, \r, \n, \b, \f, \t and other control characters (U+0000 through U+001F).
+       toJSONString(Object value) - Convert an object to JSON text.
+
+Additionally, any Extended Contract attributes are also available using the $name syntax.
+
+Example:
+
+{
+   "requestingApplicationName": "$JSONValue.escape($oobAuthRequestContext.requestingApplication.name)",
+   "requestedScope": $JSONValue.toJSONString($oobAuthRequestContext.requestedScope.values()),
+   "amount": "$JSONValue.escape($amount)",
+   "alert.color": "red"
+}
+*#</urn:Field>
+        <urn:Field name="Messages Files">pingone-mfa-messages</urn:Field>
+        <urn:Field name="API Request Timeout">5000</urn:Field>
+        <urn:Field name="Proxy Settings">System Defaults</urn:Field>
+        <urn:Field name="Custom Proxy Host"/>
+        <urn:Field name="Custom Proxy Port"/>
+    </urn:Fields>
+    <urn:AdvancedFields>
+        <urn:Field name="Test Username">user.0</urn:Field>
+        <urn:Field name="PingOne Template Name">transaction</urn:Field>
+        <urn:Field name="PingOne Template Variant"/>
+        <urn:Field name="Client Context">#*
+Define additional key/value pairs to be received at the mobile application.
+The following variables are available by default:
+
+$oobAuthRequestContext - Context for the out-of-band authentication/authorization request
+$languagePackMessages - The language-pack file configured for this authenticator
+$subject - The user's PingOne username or user ID.
+$JSONValue - A JSON utility class that can be used to escape text and convert objects to JSON.
+   Methods:
+       escape(String s) - Escape quotes, \, /, \r, \n, \b, \f, \t and other control characters (U+0000 through U+001F).
+       toJSONString(Object value) - Convert an object to JSON text.
+
+Additionally, any Extended Contract attributes are also available using the $name syntax.
+
+Example:
+
+{
+   "requestingApplicationName": "$JSONValue.escape($oobAuthRequestContext.requestingApplication.name)",
+   "requestedScope": $JSONValue.toJSONString($oobAuthRequestContext.requestedScope.values()),
+   "amount": "$JSONValue.escape($amount)",
+   "alert.color": "red"
+}
+*#</urn:Field>
+        <urn:Field name="Messages Files">pingone-mfa-messages</urn:Field>
+        <urn:Field name="API Request Timeout">5000</urn:Field>
+        <urn:Field name="Proxy Settings">System Defaults</urn:Field>
+        <urn:Field name="Custom Proxy Host"/>
+        <urn:Field name="Custom Proxy Port"/>
+    </urn:AdvancedFields>
+    <urn:Tables>
+        <urn:Table name="PingOne Template Variables"/>
+    </urn:Tables>
+    <urn:ExtendedContractAttributes/>
+</urn:PluginConfiguration>

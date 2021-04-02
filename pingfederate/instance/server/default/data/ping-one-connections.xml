@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pingOneConnectionsConfig>
+    <connections>
+        <active>true</active>
+        <creationDate>2021-03-31T13:34:53.977Z</creationDate>
+        <credentialId>a658253c-9498-4c6b-9a07-ec4121936c39</credentialId>
+        <encryptedCredential>eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiN0JPYzdOcWRTbCIsInZlcnNpb24iOiIxMC4yLjIuMCJ9..ts5UrRG2SsuCz9bS56Yfhg.jrkSXnsjLSp3PC8vdlH7K1ukfTXaB7echpCQH2PyFzrB7WOVm87kXNeMEmNPG3Td-DjBm4D1KA-AnfJoguI0haWftuqsfVEpNfKzBRFn4UieAdvjoN2faahTgF7cxupigZXdu0c7QXD2E69TiWZO9MRRCD_su6757OQAMQpumocriebvpfAOh7e2LEFCw8z3cVDrvBoMpdx67Z7dOv3IVygALNXmy3awXHI2P7wT2KTYSsfx3EuZUsBiYBDz7zvgRGWZq8LDhsfNlB6vIvMbWf9IzSLKu_UTfR0Ocm8mzPoITnpADmRBc4G4-ATXjMiPfc50ddW56uLrlyoGu6z4DdI0yWrh8Tfnf4RPdR-mNUB2QIWIBCvt_MTCYUp3yay3Ae4CyyPhQjsQK98uIGqsbgSejBILnU3Opa2EPZai-7Cr3XZUF0JorFjqivUyo4UmQUYrd6nbJ2mAeBt6tXDUPwRjRqVjojq5JUeH_ZsGnsNUhnPXudleZq7ejSYO_Fo05rMedf7StIq9ow2ms548bAbDlitvMwLMAgdHXq5gj4YlpN03uGfqxfeROTBXEx_iCRO3JMb-zEQItxUEBOOT3nD2ATao0UByeam933pLtp4hfOUtHvwzhihf5wt0d8xvujIiUlLGe1q1gCZ4KgLlpWgHBNq_o0LomASIs41JELAQ1oFoXkuLzp9-2ERuqejxS8k7hN_KC01ls9ag8EwwHGnpjLKqPrsGgk7F7QNiQSQOr1e_G39fEGUo5hZTrCYogCgWe8iUREKYHmQ44hlI0H7D5Ci7AwwxQUx6SxSy73V-ztsSqE_0Q7dIaJbTxk31-mWN0UJaOHMiejZYYQhAaxg2bgRaXCnCmnKHDjT3vTWgDWSJIuST-K2je2JymXL6i7Jgmhg0j4Jo6vfdKCeIGoLZmMC0W2V8esuwFLHin7QSSbtfO91SXuQOICsGoz1EcICBnypITKW-kJDsPUC6D-L9XRaySsmi5P4pLjQA2abnFiyZuxvdFQKUyMvCz3qbtRxYzeJaILwKWa_R14Qd0mijaF7LgcL2_lMyp6NkHM8X22FSr8UkfYU-z-2-YgZOZkMd9QM3grThhj9j7KCMCCsi9cG4qPqwjShhrEK4uQ57gcW1bNqZFn75mteIZRVA4KAHpabvRyItiss0XrlYMRnCLmYblRqXBq5uk7Pcizr7gDy_cnscIkVI5cZFU07nE1K5I5RP6i8hULXvqFnzYQAqjQFOdiN-3AOpR6p61xKdv3lYx4G0_NxsClgo7gSwI1pCPKtydDc7WXkXQqcloNi2UmEVfhVgNsgXwipi2x4hObpMQW0MmCjZMfc7s9UwaMH6rSaf-xMESteeoK0HwmlhBR9pBHprFxXII6oRuhcslEtQ8vhyQJTVHapc1z2ODjybPpM-oiFNfv9Swwrt8p1Bd8UOsZUeF8A-vL_9VSjCIVSSzCOO42vKbOrQkybSg21OYlXtu0k7wwu0MFUTHPUxF6YHG5LEvrdQpzfvkGAuklA22cJHAAzqSAUXpCeZMfwT2jihh5SppNJlKOprnAL4kbwhokhGpSNUwcfB3PABG_85a8eYpvv8BtlNS7pLIGhBZqKq8saUQgEYk-LAO87clbdlZsVt7LWLHCOG0NMrNTM7a6BMPHRiLZHh8CI1.tSefkd7AQfTC8SsrfTlNYg</encryptedCredential>
+        <environmentId>94742a12-dba9-4911-a257-f6aa8985a73d</environmentId>
+        <id>PingOneConnection</id>
+        <name>PingOne Connection</name>
+        <organizationName>trial_ping_identity_1274825138</organizationName>
+        <pingOneAuthenticationApiEndpoint>https://auth.pingone.com</pingOneAuthenticationApiEndpoint>
+        <pingOneConnectionId>194c3a34-5c8a-4df1-8518-4b915a0e207f</pingOneConnectionId>
+        <pingOneManagementApiEndpoint>https://api.pingone.com</pingOneManagementApiEndpoint>
+        <region>North America</region>
+    </connections>
+    <connections>
+        <active>true</active>
+        <creationDate>2021-03-31T13:37:03.276Z</creationDate>
+        <credentialId>99c98555-f5cf-4c24-b0ba-47cb8b731fb7</credentialId>
+        <description>Gateway Connection to PingOne Verify Demo Environment</description>
+        <encryptedCredential>eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiN0JPYzdOcWRTbCIsInZlcnNpb24iOiIxMC4yLjIuMCJ9..GCx0iijR_DlmilDZWP_0sQ.DG-iFyCswyGNsLtbat-fOS5lTRSesWb3vbU8szoAGztLNWcADM-i67lynq-DhtmtZm9EHc245Yr66eu4npEPUjh-DIfF7bQX1rTi0-0fnP2w7ljM12DSBj5vkyVt_4-5iWgI6ijoufCeRAn-9JmPx1jtoYwvkNuXFo9VM02jEtEvvEvry58kt9gVWQFmVuNUowRikOx5X7Rv-BUbq0jP3lilq08w3v2jups3ek3UroxQW2fCQcbmB_pevSRJHBERV7tI6_jbkFHR7vcwpci8Tmm_8ywVNjZjX25tI46rjLcRJg6VdRuwip3QBwWUl1HciWFZ1bktevKVLdyTt1lSmYBLxZfHlm-jy4Sf8sRCUmiKyDyFn_O4xncnWF8Ew2MAHI-UXQ7wSSlXXRuJngrPw-ai0SsH3Z8icu0jgMY_jC_1j8x6EIJH2I0aZxAsCmZdcaZmh7DA35F5WXRTJTI18zHdeWHCKQTUQm-q_C_jTA_OAayXKXg7FOyCNIW6NuKdIGPl1WKb5fA0Ltb9xTzGsgn9mgiFFTytsuc_NyRIPUUI7gh7RWI1Jqt9THzNXZXBku-YbAg1nz_ZyHmR4xXySUQG8ViwjLXuNRBt4Nr2-6KnAft0dbWVr81eejW_KlCmxXdIRxyVI2M7Nf2geIUEjCRvcos703K4tMglVHUhTz0mc7BxPcr59XI8oaOTPNbEcft2oHsV9YozYqp70aUrsG1syrGYkxPva1GPBvi4SaI99t67xLXxwRCBbZwq1OyS4NBPfeZhp-7d2dAzGTDp6BXMmZkrAP1n15Y2Q3wqDYaL4_q_ShpeCSkHro7LOY_yXtBSqnyB7BJefsGk9aKhe3UgOougb41CVDXJ53WEW6jirT0KPSOGKHYxwL3BgdoLJZwMO_IjcGA_Vj9AP9MyxMUJCFj1e6cnj004BbKCHSqz6jOeHoqnBzqSNbgcC-Yoo8v79lq09CY4HiLLyBd825T4ChVkh5M9l5MuskEAlmaVM0gGqikVJjZEAqjSECTetDwZghcEXvl8SgW9BdWyXE15Gsnr9iA3Ph-p0mvZSvwtie-4VBt-mvVRQUU7EXA1LFFza9Vlr8Tdq2tBZEBSOiesUxsh8KOeHWtOhSis9euLCJHPpg0ta2EFqJv8Yj2x443BeioFO-TdcfOgKLgyWUzps_9mmWGqdp9RarP_szwRnJGyyWCT9kWLbEg_r45ctY5-rpBboxZ6YvIQmLA3sIML4F_1NtUQ89iSIvLjyg9RuMUDnQlOLyipGCk1N5mfK-xVFQD5grOVPlsdJhIufbJXGyyktfx4jGl_2z--DyzE3DDQHj2dyULhgT4E7wCAvjzJiYPOHA0tqqCv6lLo1M6f1EslinvNfxB0dFLyGDXmNnkJqUtmX5G8lXSmWvOQ-QlpVAtfCBOXvVTh7nw5gse-MgOb-1otRP86IgpCNazeEH8nc_6hnl9s-ziSyk6v_It9LEJCy425Bx1muCXJZYnQkKHxlA7C7vaek3TOkZWNV3Kyo57I_GRsCtuU-JT8tBYzC1pSMoUahuiJ76xL7_g5Qo85x48Fruax2kclm6G1Go2OyaiQYcphM7ZIiS9AxXY_N-pOed9ekZoYrqnvctxDAi2aFjEZsX9u9_1DyQLUPUQxZPs20wcYm0rcm8CEvxNr6LeSb0SAXRX96ZnU9lR5DKlF8dJktR8h4TNGQeNmpT2-bRdRquqkPzDYGT3y.3dUkyTMktnmMg-fSQM7JAQ</encryptedCredential>
+        <environmentId>589e1861-4f53-48d0-afe0-143b0432980e</environmentId>
+        <id>PingOneVerifyDemo</id>
+        <name>PingOne Verify Demo Env</name>
+        <organizationName>internal_sinaferdosi_1834281692</organizationName>
+        <pingOneAuthenticationApiEndpoint>https://auth.pingone.com</pingOneAuthenticationApiEndpoint>
+        <pingOneConnectionId>278eb012-3176-4425-a98d-b6ef1310b53f</pingOneConnectionId>
+        <pingOneManagementApiEndpoint>https://api.pingone.com</pingOneManagementApiEndpoint>
+        <region>North America</region>
+    </connections>
+</pingOneConnectionsConfig>
